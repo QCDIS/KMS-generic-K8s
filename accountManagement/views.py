@@ -13,6 +13,7 @@ kms_admin_password = os.environ.get('KMS_ADMIN_PASSWORD')
 base_path = os.environ.get('BASE_PATH').strip()
 
 
+
 def login(request):
     es = Elasticsearch(elasticsearch_url, http_auth=[elasticsearch_username, elasticsearch_password])
     index = Index('accountmanagement', es)
