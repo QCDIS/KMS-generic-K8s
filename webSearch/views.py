@@ -906,11 +906,6 @@ def downloadCart(request):
                       "base_path": base_path
                   }
                   )
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 16-setup-pre-commit-to-protect-from-pushing-passwords
 # -----------------------------------------------------------------------------------------------------------------------
 def getAllfunctionList(request):
     if not 'BasketURLs' in request.session or not request.session['BasketURLs']:
