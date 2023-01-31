@@ -15,7 +15,7 @@ es = Elasticsearch(elasticsearch_url, http_auth=[elasticsearch_username, elastic
 
 # ---------------------------------------------------------------------------------------------------------------------
 def landingpage(request):
-    return render(request, 'landingpage.html', {'base_path':base_path})
+    return render(request, 'landingpage.html', {'base_path': base_path})
 
 
 # ---------------------------------------------------------------------------------------------------------------------

@@ -1,9 +1,0 @@
-{
-  "icos-cp.eu": {
-    "seed": "https://www.icos-cp.eu/",
-    "permitted_urls_rules": [
-    ],
-    "denied_urls_rules": [],
-    "features": {}
-  }
-}

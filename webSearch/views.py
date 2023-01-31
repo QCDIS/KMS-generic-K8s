@@ -906,9 +906,6 @@ def downloadCart(request):
                       "base_path": base_path
                   }
                   )
-
-
-
 # -----------------------------------------------------------------------------------------------------------------------
 def getAllfunctionList(request):
     if not 'BasketURLs' in request.session or not request.session['BasketURLs']:

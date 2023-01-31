@@ -11,8 +11,6 @@ from elasticsearch import Elasticsearch
 from elasticsearch_dsl import Search, Q
 from spellchecker import SpellChecker
 
-from .indexingPipeline import DatasetRecords
-
 elasticsearch_url = os.environ['ELASTICSEARCH_URL']
 elasticsearch_username = os.environ.get('ELASTICSEARCH_USERNAME')
 elasticsearch_password = os.environ.get('ELASTICSEARCH_PASSWORD')
@@ -54,34 +52,10 @@ aggregares = {
 }
 
 
-# -------------------------------------------------------------------------------------------
-def indexingpipeline(request):
-    print("indexing...")
-    try:
-        RI = request.GET['RI']
-    except:
-        RI = ''
-
-    if RI == "ICOS":
-        DatasetRecords.Run_indexingPipeline_ICOS()
-    elif RI == "CDI":
-        DatasetRecords.Run_indexingPipeline_SeaDataNet_CDI()
-    elif RI == "EDMED":
-        DatasetRecords.Run_indexingPipeline_SeaDataNet_EDMED()
-    elif RI == "LifeWatch":
-        DatasetRecords.Run_indexingPipeline_LifeWatch()
-
-    response_data = {}
-    response_data['result'] = RI
-    response_data['message'] = 'The indexing process of the ' + RI + ' dataset repository has been initiated!'
-
-    return HttpResponse(json.dumps(response_data), content_type="application/json")
-
-
 # ----------------------------------------------------------------------------------------
 def aggregates(request):
     query_body = {
-        "from": page,
+        "from": 'page',
         "size": 10,
         "query": {
             "match_all": {}
@@ -239,7 +213,7 @@ def getSearchResults(request, facet, filter, page, term):
                 searchResult['key'] != "Data" and searchResult['key'] != "Unspecified" and searchResult[
                     'key'] != "N/A" and searchResult['key'] != "" and ("ANE" not in searchResult['key']) and (
                         "Belgian" not in searchResult['key']) and ("calculated BB" not in searchResult['key']) and int(
-                        searchResult['doc_count'] > 1)):
+                    searchResult['doc_count'] > 1)):
             SC = {
                 'key': searchResult['key'],
                 'doc_count': searchResult['doc_count']
@@ -342,8 +316,6 @@ def potentialSearchTerm(term):
     return alternative_search_term
 
 
-
-
 # ----------------------------------------------------------------------------------------
 def rest(request):
     try:
@@ -414,6 +386,7 @@ def result(request):
     context = {'base_path': base_path}
     # context['result'] = SelectionForm()
     return render(request, "result.html", context)
+
 
 # -------------------------------------------------------------------------
 def search_index(request):

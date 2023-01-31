@@ -68,4 +68,4 @@ def login(request):
     }
     result = es.search(index="accountmanagement", body=query_body)
     print(result)
-    return render(request, 'login.html', {"username": username, "password": password})
+    return render(request, 'login.html', {"username": username, "password": password, "base_path": base_path})
