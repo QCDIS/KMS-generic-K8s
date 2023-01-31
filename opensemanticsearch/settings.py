@@ -13,6 +13,8 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+from django.core.management.utils import get_random_secret_key
+
 # Add to python path so includes of ETL modules will work in Django environment
 import sys
 
@@ -23,7 +25,7 @@ sys.path.append("/usr/lib/python3/dist-packages/opensemanticetl")
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ''
+SECRET_KEY = get_random_secret_key()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

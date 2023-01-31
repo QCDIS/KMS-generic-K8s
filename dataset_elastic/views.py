@@ -11,8 +11,6 @@ from elasticsearch import Elasticsearch
 from elasticsearch_dsl import Search, Q
 from spellchecker import SpellChecker
 
-from .indexingPipeline import DatasetRecords
-
 elasticsearch_url = os.environ['ELASTICSEARCH_URL']
 elasticsearch_username = os.environ.get('ELASTICSEARCH_USERNAME')
 elasticsearch_password = os.environ.get('ELASTICSEARCH_PASSWORD')
@@ -53,35 +51,10 @@ aggregares = {
     },
 }
 
-
-# -------------------------------------------------------------------------------------------
-def indexingpipeline(request):
-    print("indexing...")
-    try:
-        RI = request.GET['RI']
-    except:
-        RI = ''
-
-    if RI == "ICOS":
-        DatasetRecords.Run_indexingPipeline_ICOS()
-    elif RI == "CDI":
-        DatasetRecords.Run_indexingPipeline_SeaDataNet_CDI()
-    elif RI == "EDMED":
-        DatasetRecords.Run_indexingPipeline_SeaDataNet_EDMED()
-    elif RI == "LifeWatch":
-        DatasetRecords.Run_indexingPipeline_LifeWatch()
-
-    response_data = {}
-    response_data['result'] = RI
-    response_data['message'] = 'The indexing process of the ' + RI + ' dataset repository has been initiated!'
-
-    return HttpResponse(json.dumps(response_data), content_type="application/json")
-
-
 # ----------------------------------------------------------------------------------------
 def aggregates(request):
     query_body = {
-        "from": page,
+        "from": 'page',
         "size": 10,
         "query": {
             "match_all": {}
