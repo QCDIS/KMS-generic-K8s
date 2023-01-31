@@ -213,7 +213,7 @@ def getSearchResults(request, facet, filter, page, term):
                 searchResult['key'] != "Data" and searchResult['key'] != "Unspecified" and searchResult[
                     'key'] != "N/A" and searchResult['key'] != "" and ("ANE" not in searchResult['key']) and (
                         "Belgian" not in searchResult['key']) and ("calculated BB" not in searchResult['key']) and int(
-                    searchResult['doc_count'] > 1)):
+                        searchResult['doc_count'] > 1)):
             SC = {
                 'key': searchResult['key'],
                 'doc_count': searchResult['doc_count']
