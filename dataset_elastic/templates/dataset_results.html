@@ -372,8 +372,9 @@
                                 <br>
                                 {% if suggestedSearchTerm != "" %}
                                 Did you mean:
-                                <b><a href="../dataset_elastic/genericsearch?term={{ suggestedSearchTerm }}&page=1">{{
-                                    suggestedSearchTerm }}</a></b>
+                                <b><a href="../dataset_elastic/genericsearch?term={{ suggestedSearchTerm }}&page=1">
+                                    {{ suggestedSearchTerm }}
+                                </a></b>
                                 {% endif %}
                                 <script>
                                         //sessionStorage.setItem("SearchFailed","Yes");
