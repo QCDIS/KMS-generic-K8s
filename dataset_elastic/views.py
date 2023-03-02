@@ -62,7 +62,7 @@ def aggregates(request):
         },
         "aggs": aggregares
     }
-    result = es.search(index="envri", body=query_body)
+    result = es.search(index="dataset", body=query_body)
     return JsonResponse(result, safe=True, json_dumps_params={'ensure_ascii': False})
 
 
@@ -124,7 +124,7 @@ def getSearchResults(request, facet, filter, page, term):
     result = {}
     if term == "*" or term == "top10":
         result = es.search(
-            index="envri",
+            index="dataset",
             body={
                 "from": page,
                 "size": 10,
@@ -179,7 +179,7 @@ def getSearchResults(request, facet, filter, page, term):
             "aggs": aggregares
         }
 
-        result = es.search(index="envri", body=query_body)
+        result = es.search(index="dataset", body=query_body)
 
     lstResults = []
     LocationspatialCoverage = []
@@ -536,7 +536,7 @@ def esearch(keywords="",
           minimum_should_match=1
           )
 
-    s = Search(using=client, index="envri") \
+    s = Search(using=client, index="dataset") \
             .filter("range", temporal={'gte': year_from, 'lte': year_to}) \
             .filter("range", longitude={'gte': lon_gte, 'lte': lon_lte}) \
             .filter("range", latitude={'gte': lat_gte, 'lte': lat_lte}) \
