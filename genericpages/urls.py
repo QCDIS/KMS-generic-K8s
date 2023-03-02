@@ -5,5 +5,5 @@ from genericpages import views
 urlpatterns = [
     # url(r'^index', views.index, name='index'),
     url(r'^genericpages', views.genericpages, name='genericpages'),
-    url('', views.landingpage, name='landingpage'),
+    url('^$', views.landingpage, name='landingpage'),
 ]
