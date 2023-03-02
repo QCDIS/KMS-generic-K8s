@@ -19,15 +19,15 @@ base_path = os.environ.get('BASE_PATH').strip()
 es = Elasticsearch(elasticsearch_url, http_auth=[elasticsearch_username, elasticsearch_password])
 
 aggregares = {
-    "ResearchInfrastructure": {
+    "repo": {
         "terms": {
-            "field": "ResearchInfrastructure.keyword",
+            "field": "repo.keyword",
             "size": 50,
         }
     },
-    "spatialCoverage": {
+    "spatial_coverage": {
         "terms": {
-            "field": "spatialCoverage.keyword",
+            "field": "spatial_coverage.keyword",
             "size": 50,
         }
     },
@@ -43,9 +43,9 @@ aggregares = {
             "size": 50,
         }
     },
-    "measurementTechnique": {
+    "instrument": {
         "terms": {
-            "field": "measurementTechnique.keyword",
+            "field": "instrument.keyword",
             "size": 50,
         }
     },
@@ -155,13 +155,16 @@ def getSearchResults(request, facet, filter, page, term):
                             "query": term,
                             "fields": ["description", "keywords", "contact", "publisher", "citation",
                                        "genre", "creator", "headline", "abstract", "theme", "producer", "author",
-                                       "sponsor", "provider", "name", "measurementTechnique", "maintainer", "editor",
+                                       "sponsor", "provider", "title",
+                                       "instrument", "maintainer", "editor",
                                        "copyrightHolder", "contributor", "contentLocation", "about", "rights",
                                        "useConstraints",
                                        "status", "scope", "metadataProfile", "metadataIdentifier", "distributionInfo",
                                        "dataQualityInfo",
-                                       "contentInfo", "ResearchInfrastructure", "EssentialVariables",
-                                       "potentialTopics"],
+                                       "contentInfo",
+                                       "repo",
+                                       "essential_variables",
+                                       "potential_topics"],
                             "type": "best_fields",
                             "minimum_should_match": "50%"
                         }
@@ -183,22 +186,22 @@ def getSearchResults(request, facet, filter, page, term):
     spatialCounter = 0
     for searchResult in result['hits']['hits']:
         lstResults.append(searchResult['_source'])
-        for potentialocation in searchResult['_source']['spatialCoverage']:
+        for potentialocation in searchResult['_source']['spatial_coverage']:
             location = re.sub(r'[^A-Za-z0-9 ]+', '', potentialocation)
             if (location != "") and (location != "None") and (len(location) < 20) and (
                     location not in LocationspatialCoverage) and (spatialCounter < 10):
                 spatialCounter = spatialCounter + 1
-                geoLocation = {"location": location, "RI": searchResult['_source']['ResearchInfrastructure'][0]}
+                geoLocation = {"location": location, "RI": searchResult['_source']['repo'][0]}
                 LocationspatialCoverage.append(geoLocation)
 
     # ......................
-    ResearchInfrastructure = []
-    spatialCoverage = []
+    repo = []
+    spatial_coverage = []
     theme = []
     publisher = []
-    measurementTechnique = []
+    instrument = []
     # ......................
-    for searchResult in result['aggregations']['ResearchInfrastructure']['buckets']:
+    for searchResult in result['aggregations']['repo']['buckets']:
         if (searchResult['key'] != "None" and searchResult['key'] != "unknown" and searchResult['key'] != "Unknown" and
                 searchResult['key'] != "Data" and searchResult['key'] != "Unspecified" and searchResult['key'] != "" and
                 searchResult['key'] != "N/A"):
@@ -206,9 +209,9 @@ def getSearchResults(request, facet, filter, page, term):
                 'key': searchResult['key'],
                 'doc_count': searchResult['doc_count']
             }
-            ResearchInfrastructure.append(RI)
+            repo.append(RI)
     # ......................
-    for searchResult in result['aggregations']['spatialCoverage']['buckets']:
+    for searchResult in result['aggregations']['spatial_coverage']['buckets']:
         if (searchResult['key'] != "None" and searchResult['key'] != "unknown" and searchResult['key'] != "Unknown" and
                 searchResult['key'] != "Data" and searchResult['key'] != "Unspecified" and searchResult[
                     'key'] != "N/A" and searchResult['key'] != "" and ("ANE" not in searchResult['key']) and (
@@ -218,7 +221,7 @@ def getSearchResults(request, facet, filter, page, term):
                 'key': searchResult['key'],
                 'doc_count': searchResult['doc_count']
             }
-            spatialCoverage.append(SC)
+            spatial_coverage.append(SC)
         # ......................
     for searchResult in result['aggregations']['theme']['buckets']:
         if (searchResult['key'] != "None" and searchResult['key'] != "unknown" and searchResult['key'] != "Unknown" and
@@ -240,7 +243,7 @@ def getSearchResults(request, facet, filter, page, term):
             }
             publisher.append(Pub)
     # ......................
-    for searchResult in result['aggregations']['measurementTechnique']['buckets']:
+    for searchResult in result['aggregations']['instrument']['buckets']:
         if (searchResult['key'] != "None" and searchResult['key'] != "unknown" and searchResult['key'] != "Unknown" and
                 searchResult['key'] != "Data" and searchResult['key'] != "Unspecified" and searchResult[
                     'key'] != "N/A" and searchResult['key'] != "" and int(searchResult['doc_count'] > 1)):
@@ -248,14 +251,14 @@ def getSearchResults(request, facet, filter, page, term):
                 'key': searchResult['key'],
                 'doc_count': searchResult['doc_count']
             }
-            measurementTechnique.append(meT)
+            instrument.append(meT)
     # ......................
     facets = {
-        'ResearchInfrastructure': ResearchInfrastructure,
-        'spatialCoverage': spatialCoverage,
+        'repo': repo,
+        'spatial_coverage': spatial_coverage,
         'theme': theme,
         'publisher': publisher,
-        'measurementTechnique': measurementTechnique
+        'instrument': instrument
     }
 
     # envri-statics
@@ -276,7 +279,7 @@ def getSearchResults(request, facet, filter, page, term):
         "cur_page": (page / 10 + 1),
         "searchTerm": term,
         "functionList": getAllfunctionList(request),
-        "spatialCoverage": LocationspatialCoverage
+        "spatial_coverage": LocationspatialCoverage
     }
     return result
 
@@ -366,7 +369,7 @@ def rest(request):
         abstract = '*'
 
     result = esearch(all_fields=term, year_from=year_from, year_to=year_to, lon=lon,
-                     lat=lat, station=station.lower(), genre=genre.lower(), author=author.lower(),
+                     lat=lat, station=station.lower(), discipline=genre.lower(), author=author.lower(),
                      distributor=distributor.lower(),
                      keywords=keywords.lower(), abstract=abstract.lower())
     return JsonResponse(result, safe=True, json_dumps_params={'ensure_ascii': False})
@@ -454,7 +457,7 @@ def esearch(keywords="",
             lon="",
             lat="",
             station="",
-            genre="",
+            discipline="",
             author="",
             distributor="",
             ):
@@ -479,7 +482,7 @@ def esearch(keywords="",
     else:
         filter_type_provider = "match_phrase"
 
-    if genre == '*':
+    if discipline == '*':
         filter_type_genre = "wildcard"
     else:
         filter_type_genre = "match_phrase"
@@ -517,7 +520,7 @@ def esearch(keywords="",
               Q(filter_type_all_fields, abstract=abstract),
               Q(filter_type_all_fields, keywords=all_fields),
               Q(filter_type_all_fields, abstract=all_fields),
-              Q(filter_type_all_fields, name=all_fields),
+              Q(filter_type_all_fields, title=all_fields),
               Q(filter_type_all_fields, material=all_fields),
               Q(filter_type_all_fields, publisher=all_fields),
               Q(filter_type_all_fields, description=all_fields),
@@ -538,7 +541,7 @@ def esearch(keywords="",
             .filter("range", longitude={'gte': lon_gte, 'lte': lon_lte}) \
             .filter("range", latitude={'gte': lat_gte, 'lte': lat_lte}) \
             .filter(filter_type_provider, provider=station) \
-            .filter(filter_type_genre, genre=genre) \
+            .filter(filter_type_genre, genre=discipline) \
             .filter(filter_type_distributor, distributor=distributor) \
             .filter(filter_type_author, author=author) \
             .query(q)[:1000]
@@ -555,7 +558,7 @@ def get_results_rest(response):
     for hit in response:
         result = {
             'identifier': str(hit.identifier),
-            'name': str(hit.name),
+            'title': str(hit.title),
             'temporal': str(hit.temporal),
             'author': [name for name in hit.author],
             'landing_page': str(hit.landing_page),
@@ -591,5 +594,5 @@ def getAllfunctionList(request):
     saved_list = request.session['MyBasket']
     for item in saved_list:
         functionList = functionList + r"modifyCart({'operation':'add','type':'" + item['type'] + "','title':'" + item[
-            'title'] + "','url':'" + item['url'] + "','id':'" + item['id'] + "' });"
+            'title'] + "','source':'" + item['source'] + "','id':'" + item['id'] + "' });"
     return functionList

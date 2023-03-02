@@ -198,14 +198,14 @@
                                             <i class="ti-reload"></i> &nbsp; Reset filters </a> <br> <br>
                                          </span>
 
-                                    {% if facets.ResearchInfrastructure %}
+                                    {% if facets.repo %}
                                     <span style="font-weight:bold; padding:5px; color:darkblue; font-size:10pt;">
                                              Research Infrastructures:
                                          </span>
                                     {% endif %}
-                                    {%for facet in facets.ResearchInfrastructure%}
+                                    {%for facet in facets.repo %}
                                     <li class=" ">
-                                        <a href="#" onclick="facetSearch('ResearchInfrastructure','{{facet.key}}');">
+                                        <a href="#" onclick="facetSearch('repo','{{facet.key}}');">
                                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">
                                                     {{ facet.key|truncatechars:15 }}
@@ -215,14 +215,14 @@
                                         </a>
                                     </li>
                                     {% endfor %}
-                                    {% if facets.measurementTechnique %}
+                                    {% if facets.measurement_technique %}
                                     <span style="font-weight:bold; padding:5px; color:darkblue; font-size:10pt;">
                                              Measurement Technique:
                                          </span>
                                     {% endif %}
-                                    {%for facet in facets.measurementTechnique %}
+                                    {%for facet in facets.measurement_technique %}
                                     <li class=" ">
-                                        <a href="#" onclick="facetSearch('measurementTechnique','{{facet.key}}');">
+                                        <a href="#" onclick="facetSearch('measurement_technique','{{facet.key}}');">
                                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">
                                                     {{ facet.key|truncatechars:15 }}
@@ -266,14 +266,14 @@
                                         </a>
                                     </li>
                                     {% endfor %}
-                                    {% if facets.spatialCoverage %}
+                                    {% if facets.spatial_coverage %}
                                     <span style="font-weight:bold; padding:5px; color:darkblue; font-size:10pt;">
                                              Spatial Coverage:
                                          </span>
                                     {% endif %}
-                                    {%for facet in facets.spatialCoverage %}
+                                    {%for facet in facets.spatial_coverage %}
                                     <li class=" ">
-                                        <a href="#" onclick="facetSearch('spatialCoverage','{{facet.key}}');">
+                                        <a href="#" onclick="facetSearch('spatial_coverage','{{facet.key}}');">
                                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">
                                                     {{ facet.key|truncatechars:15 }}
@@ -410,18 +410,18 @@
                                                 <div class="card-header">
 
                                                     <h5 class="m-b-10 titleTrimming">
-                                                        {% if 'json' in resultItem.url.0 %}
-                                                        <a href="{{ resultItem.url.0|slice:':-4' }}" style="color:darkblue;"
+                                                        {% if 'json' in resultItem.source.0 %}
+                                                        <a href="{{ resultItem.source.0|slice:':-4' }}" style="color:darkblue;"
                                                            target="_blank">
                                                             {% else %}
-                                                            <a href="{{ resultItem.url.0 }}" style="color:darkblue;"
+                                                            <a href="{{ resultItem.source.0 }}" style="color:darkblue;"
                                                                target="_blank">
                                                                 {% endif %}
                                                                 <img src="{% static 'images/datasetlogo.png' %}"
                                                                      style="width:15px; left: 10px; margin-right:6px;"/>
-                                                                {%for name in resultItem.name %}
-                                                                {% if name != resultItem.ResearchInfrastructure.0 %}
-                                                                {{ name }} .
+                                                                {%for title in resultItem.title %}
+                                                                {% if title != resultItem.repo.0 %}
+                                                                {{ title }} .
                                                                 {% endif %}
                                                                 {% endfor %}
                                                             </a>
@@ -444,20 +444,20 @@
                                                     </p>
                                                     <ul class="breadcrumb-title b-t-default p-t-10">
                                                         <li class="breadcrumb-item"><a href="#!">
-                                                            {% if resultItem.ResearchInfrastructure.0 == "SeaDataNet" %}
+                                                            {% if resultItem.repo.0 == "SeaDataNet" %}
                                                             <img src="{% static 'images/ENVRI-Collection/RIs/SeaDataNet.jpg' %}"
                                                                  style="width:50px"/>
-                                                            {% elif resultItem.ResearchInfrastructure.0 == "ICOS"%}
+                                                            {% elif resultItem.repo.0 == "ICOS"%}
                                                             <img src="{% static 'images/ENVRI-Collection/RIs/ICOS.jpg' %}"
                                                                  style="width:70px"/>
-                                                            {% elif resultItem.ResearchInfrastructure.0 == "LifeWatch"%}
+                                                            {% elif resultItem.repo.0 == "LifeWatch"%}
                                                             <img src="{% static 'images/ENVRI-Collection/RIs/LifeWatchERIC.png' %}"
                                                                  style="width:70px"/>
                                                             {% endif %}
 
                                                         </a>
                                                             <a href="#"
-                                                               onclick="modifyBasket('add','Datasets',&quot;{%for name in resultItem.name %}{% if name != resultItem.ResearchInfrastructure.0 %}{{ name }} .{% endif %}{% endfor %}&quot;, &quot;{% if 'json' in resultItem.url.0 %} {{ resultItem.url.0|slice:':-4' }}{% else %}{{ resultItem.url.0 }}{% endif %}&quot;, 'id');">
+                                                               onclick="modifyBasket('add','Datasets',&quot;{%for title in resultItem.title %}{% if title != resultItem.repo.0 %}{{ title }} .{% endif %}{% endfor %}&quot;, &quot;{% if 'json' in resultItem.source.0 %} {{ resultItem.source.0|slice:':-4' }}{% else %}{{ resultItem.source.0 }}{% endif %}&quot;, 'id');">
                                                                 <img src="{% static 'images/addToBasket.png' %}"
                                                                      style="width:25px; right:0px;position: absolute;margin-right:20px;"/>
                                                             </a>
@@ -656,7 +656,7 @@ function modifyCart(data) {
       li.innerHTML= '<div class="media">'+
                         icon+
                         '<div class="media-body">'+
-                            '<h5 class="notification-user"><a target="_blank" href="'+data['url']+'">'+data['title']+'</a> </h5>'+
+                            '<h5 class="notification-user"><a target="_blank" href="'+data['source']+'">'+data['title']+'</a> </h5>'+
                          '</div>'+
                          '<a href="#" onclick="modifyBasket(&quot;delete&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;'+data['id']+'&quot;);"'+
                            'style="font-size:8pt;  display:inline-block;"> <i class="ti-close"></i>'+
@@ -718,7 +718,7 @@ function insertLocation(location, RI){
     })
 }
 
-generateFirstView('{{ spatialCoverage.0.location }}', '{{ spatialCoverage.0.RI }}');
+generateFirstView('{{ spatial_coverage.0.location }}', '{{ spatial_coverage.0.RI }}');
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -729,7 +729,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     accessToken: 'pk.eyJ1Ijoic2lhbWFrZmFyc2hpZGkiLCJhIjoiY2s3dG5zaW0wMHg4czNtb3U1dWRwc2ZlbyJ9.yYhXI7_f9gBUYBAD_wS8Ug'
 }).addTo(map);
 
-{% for geo in spatialCoverage %}
+{% for geo in spatial_coverage %}
       insertLocation('{{ geo.location }}', '{{ geo.RI }}');
 {% endfor %}
 
