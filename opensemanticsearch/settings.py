@@ -13,8 +13,6 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-from django.core.management.utils import get_random_secret_key
-
 # Add to python path so includes of ETL modules will work in Django environment
 import sys
 
@@ -25,7 +23,7 @@ sys.path.append("/usr/lib/python3/dist-packages/opensemanticetl")
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = get_random_secret_key()
+SECRET_KEY = '^8nhh!o3&s91t33ol^*g_6s=)@)3^s-k=w@u1(5h@83w*hyl0^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -85,9 +83,7 @@ TEMPLATE_DIRS = (
     BASE_DIR + '/templates/',
 )
 
-
 WSGI_APPLICATION = 'opensemanticsearch.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
@@ -105,18 +101,18 @@ if os.path.isfile('my.cnf'):
 
 else:
 
-	DATABASES = {
-	    'default': {
-	        'ENGINE': 'django.db.backends.sqlite3',
-	        'NAME': 'db.sqlite3',
-	    }
-	}
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'db.sqlite3',
+        }
+    }
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-#LANGUAGE_CODE = 'de-de'
+# LANGUAGE_CODE = 'de-de'
 
 TIME_ZONE = 'UTC'
 
@@ -131,18 +127,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-STATIC_URL = '/static/'
-
+base_path = os.environ.get('BASE_PATH').strip()
+STATIC_URL = base_path + '/static/'
 # Add these new lines
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
+STATIC_ROOT = os.path.join(BASE_DIR, STATIC_URL)
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
-
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
@@ -160,5 +154,3 @@ SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
 
 # Cookie Based, Browser Clearing Will lose it.
 SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
-
-
