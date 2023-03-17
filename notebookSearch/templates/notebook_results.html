@@ -325,17 +325,11 @@
                                                     </p>
                                                     <ul class="breadcrumb-title b-t-default p-t-10">
                                                         <li class="breadcrumb-item"><a href="#!">
-                                                            <div style="display:inline-block;"> Size: {{ resultItem.size
-                                                                }} KB
-                                                            </div>
-                                                            <span style="padding:10px; color:lightgray;"> | </span>
-                                                            <div style="display:inline-block;"> Stars: {{
-                                                                resultItem.stargazers_count }}
-                                                            </div>
-                                                            <span style="padding:10px; color:lightgray;"> | </span>
-                                                            <div style="display:inline-block;"><a
-                                                                    href="{{ resultItem.git_url }}" target="_blank">
-                                                                Git </a></div>
+                                                            <div style="display:inline-block;"> Stars: {{ resultItem.stargazers_count }}</div>
+                                                            {% if resultItem.size %}
+                                                                <span style="padding:10px; color:lightgray;"> | </span>
+                                                                <div style="display:inline-block;"> Size: {{ resultItem.size }} KB</div>
+                                                            {% endif %}
                                                         </a>
 
                                                             <a href="#"
