@@ -445,15 +445,59 @@
                                                     </p>
                                                     <ul class="breadcrumb-title b-t-default p-t-10">
                                                         <li class="breadcrumb-item"><a href="#!">
+
                                                             {% if resultItem.repo.0 == "SeaDataNet" %}
-                                                            <img src="{% static 'images/ENVRI-Collection/RIs/SeaDataNet.jpg' %}"
-                                                                 style="width:50px"/>
+                                                                <img src="{% static 'images/ENVRI-Collection/RIs/SeaDataNet.jpg' %}" style="width:50px" />
                                                             {% elif resultItem.repo.0 == "ICOS"%}
-                                                            <img src="{% static 'images/ENVRI-Collection/RIs/ICOS.jpg' %}"
-                                                                 style="width:70px"/>
+                                                                <img src="{% static 'images/ENVRI-Collection/RIs/ICOS.jpg' %}" style="width:70px" />
                                                             {% elif resultItem.repo.0 == "LifeWatch"%}
-                                                            <img src="{% static 'images/ENVRI-Collection/RIs/LifeWatchERIC.png' %}"
-                                                                 style="width:70px"/>
+                                                                <img src="{% static 'images/ENVRI-Collection/RIs/LifeWatchERIC.png' %}" style="width:70px" />
+                                                            {% elif resultItem.repo.0 == "AnaEE"%}
+                                                                <img src="{% static 'images/ENVRI-Collection/RIs/anaee.png' %}" style="width:70px" />
+                                                            {% elif resultItem.repo.0 == "AQUACOSM"%}
+                                                                <img src="{% static 'images/ENVRI-Collection/RIs/AQUACOSM.jpg' %}" style="width:70px" />
+                                                            {% elif resultItem.repo.0 == "ARISE"%}
+                                                                <img src="{% static 'images/ENVRI-Collection/RIs/arise.jpg' %}" style="width:70px" />
+                                                            {% elif resultItem.repo.0 == "DANUBIUS-RI"%}
+                                                                <img src="{% static 'images/ENVRI-Collection/RIs/DANUBIUS-RI.png' %}" style="width:70px" />
+                                                            {% elif resultItem.repo.0 == "DiSSCo"%}
+                                                                <img src="{% static 'images/ENVRI-Collection/RIs/DISSCO.png' %}" style="width:70px" />
+                                                            {% elif resultItem.repo.0 == "EISCAT 3D"%}
+                                                                <img src="{% static 'images/ENVRI-Collection/RIs/EISCAT3D.png' %}" style="width:70px" />
+                                                            {% elif resultItem.repo.0 == "eLTER RI"%}
+                                                                <img src="{% static 'images/ENVRI-Collection/RIs/elterRI.png' %}" style="width:70px" />
+                                                            {% elif resultItem.repo.0 == "EMBRC"%}
+                                                                <img src="{% static 'images/ENVRI-Collection/RIs/EMBRC.png' %}" style="width:70px" />
+                                                            {% elif resultItem.repo.0 == "EMSO"%}
+                                                                <img src="{% static 'images/ENVRI-Collection/RIs/EMSOERIC.png' %}" style="width:70px" />
+                                                            {% elif resultItem.repo.0 == "EMPHASIS"%}
+                                                                <img src="{% static 'images/ENVRI-Collection/RIs/EMPHASIS.png' %}" style="width:70px" />
+                                                            {% elif resultItem.repo.0 == "EPOS"%}
+                                                                <img src="{% static 'images/ENVRI-Collection/RIs/EPOS.png' %}" style="width:70px" />
+                                                            {% elif resultItem.repo.0 == "EUFAR"%}
+                                                                <img src="{% static 'images/ENVRI-Collection/RIs/EUFAR.jpg' %}" style="width:70px" />
+                                                            {% elif resultItem.repo.0 == "Euro-Argo ERIC"%}
+                                                                <img src="{% static 'images/ENVRI-Collection/RIs/euroArgo.png' %}" style="width:70px" />
+                                                            {% elif resultItem.repo.0 == "EUROFLEETS+"%}
+                                                                <img src="{% static 'images/ENVRI-Collection/RIs/Eurofleets.jpg' %}" style="width:70px" />
+                                                            {% elif resultItem.repo.0 == "EuroGOOS"%}
+                                                                <img src="{% static 'images/ENVRI-Collection/RIs/EuroGOOS.png' %}" style="width:70px" />
+                                                            {% elif resultItem.repo.0 == "EUROCHAMP"%}
+                                                                <img src="{% static 'images/ENVRI-Collection/RIs/EUROCHAMP.png' %}" style="width:70px" />
+                                                            {% elif resultItem.repo.0 == "HEMERA"%}
+                                                                <img src="{% static 'images/ENVRI-Collection/RIs/Hemera.png' %}" style="width:70px" />
+                                                            {% elif resultItem.repo.0 == "IAGOS"%}
+                                                                <img src="{% static 'images/ENVRI-Collection/RIs/IAGOSERI.png' %}" style="width:70px" />
+                                                            {% elif resultItem.repo.0 == "INTERACT"%}
+                                                                <img src="{% static 'images/ENVRI-Collection/RIs/INTERACT.jpg' %}" style="width:70px" />
+                                                            {% elif resultItem.repo.0 == "IS-ENES"%}
+                                                                <img src="{% static 'images/ENVRI-Collection/RIs/ISENES.png' %}" style="width:70px" />
+                                                            {% elif resultItem.repo.0 == "JERICO-RI"%}
+                                                                <img src="{% static 'images/ENVRI-Collection/RIs/JERICO.jpg' %}" style="width:70px" />
+                                                            {% elif resultItem.repo.0 == "SeaDataNet"%}
+                                                                <img src="{% static 'images/ENVRI-Collection/RIs/SeaDataNet.jpg' %}" style="width:70px" />
+                                                            {% elif resultItem.repo.0 == "SIOS"%}
+                                                                <img src="{% static 'images/ENVRI-Collection/RIs/sios.png' %}" style="width:70px" />
                                                             {% endif %}
 
                                                         </a>
