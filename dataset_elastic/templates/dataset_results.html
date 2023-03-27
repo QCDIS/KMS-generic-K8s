@@ -20,7 +20,7 @@
           name="keywords">
     <meta content="codedthemes" name="author">
     <!-- Favicon icon -->
-    <link href="{% static '/images/envriLOGO.png'%}" rel="icon" type="image/x-icon">
+    <link href="{% static '/images/favicon.png'%}" rel="icon" type="image/x-icon">
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600" rel="stylesheet">
     <!-- Required Fremwork -->
@@ -501,8 +501,7 @@
                                                             {% endif %}
 
                                                         </a>
-                                                            <a href="#"
-                                                               onclick="modifyBasket('add','Datasets',&quot;{%for title in resultItem.title %}{% if title != resultItem.repo.0 %}{{ title }} .{% endif %}{% endfor %}&quot;, &quot;{% if 'json' in resultItem.source.0 %} {{ resultItem.source.0|slice:':-4' }}{% else %}{{ resultItem.source.0 }}{% endif %}&quot;, 'id');">
+                                                            <a href="#" onclick="modifyBasket('add','Datasets','{%for title in resultItem.title %}{% if title != resultItem.repo.0 %}{{ title }} .{% endif %}{% endfor %}', '{% if 'json' in resultItem.source.0 %} {{ resultItem.source.0|slice:':-4' }}{% else %}{{ resultItem.source.0 }}{% endif %}', 'id');">
                                                                 <img src="{% static 'images/addToBasket.png' %}"
                                                                      style="width:25px; right:0px;position: absolute;margin-right:20px;"/>
                                                             </a>
