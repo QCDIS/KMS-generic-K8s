@@ -20,7 +20,7 @@
           name="keywords">
     <meta content="codedthemes" name="author">
     <!-- Favicon icon -->
-    <link href="{% static '/images/envriLOGO.png'%}" rel="icon" type="image/x-icon">
+    <link href="{% static '/images/favicon.png'%}" rel="icon" type="image/x-icon">
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600" rel="stylesheet">
     <!-- Required Fremwork -->
@@ -433,8 +433,7 @@
                                                 <br>
                                                 {% if suggestedSearchTerm != "" %}
                                                 Did you mean:
-                                                <b><a href="../webSearch/genericsearch?term={{ suggestedSearchTerm }}&page=1&searchtype=imagesearch">{{
-                                                    suggestedSearchTerm }}</a></b>
+                                                <b><a href="../webSearch/genericsearch?term={{ suggestedSearchTerm }}&page=1&searchtype=imagesearch">{{ suggestedSearchTerm }}</a></b>
                                                 {% endif %}
                                                 <script>
                                                             //sessionStorage.setItem("SearchFailed","Yes");

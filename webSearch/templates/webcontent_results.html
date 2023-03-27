@@ -18,7 +18,7 @@
     <meta name="keywords" content="flat ui, admin , Flat ui, Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
     <meta name="author" content="codedthemes">
     <!-- Favicon icon -->
-    <link rel="icon" href="{% static '/images/envriLOGO.png'%}" type="image/x-icon">
+    <link href="{% static '/images/favicon.png'%}" rel="icon" type="image/x-icon">
     <!-- Google font--><link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600" rel="stylesheet">
     <!-- Required Fremwork -->
     <link rel="stylesheet" type="text/css" href="{% static '/css/bootstrap/css/bootstrap.min.css'%}">
@@ -433,7 +433,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="card-block">
-                                                        <div style="color:silver; text-decoration:italic; font-size:tiny; text-align: left; width:100%;">
+                                                        <div style="color:silver; text-style:italic; font-size:x-small; text-align: left; width:100%;">
                                                             {{ resultItem.lastIndexingDate.0 }}
                                                         </div>
                                                         <br>
@@ -569,7 +569,7 @@
                                                                 <img src="{% static 'images/ENVRI-Collection/RIs/KB.png' %}" style="width:30px" />
                                                                 {% endif %}
                                                             </a>
-                                                                <a href="#" onclick="modifyBasket('add','Webpages',&quot;{%for title in resultItem.title %} {{title}} {% endfor %}&quot;,'{{ resultItem.url.0 }}', 'id');">
+                                                                <a href="#" onclick="modifyBasket('add','Webpages','{%for title in resultItem.title %}{{ title }} {% endfor %}', '{{ resultItem.url.0 }}', 'id');">
                                                                     <img src="{% static 'images/addToBasket.png' %}" style="width:25px; right:0px;position: absolute;margin-right:20px;" /> </a>
 
                                                             </li>
