@@ -594,5 +594,5 @@ def getAllfunctionList(request):
     saved_list = request.session['MyBasket']
     for item in saved_list:
         functionList = functionList + r"modifyCart({'operation':'add','type':'" + item['type'] + "','title':'" + item[
-            'title'] + "','source':'" + item['source'] + "','id':'" + item['id'] + "' });"
+            'title'] + "','url':'" + item['url'] + "','id':'" + item['id'] + "' });"
     return functionList
