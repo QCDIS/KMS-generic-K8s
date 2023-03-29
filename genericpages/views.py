@@ -92,7 +92,7 @@ def genericpages(request):
             })
 
         except:
-            searchValue = ''
+            return render(request, 'graphV.html', {})
     # ----------------------------------------------
     elif page == "home":
         request.session['filters'] = []
@@ -746,12 +746,16 @@ def graphV_dataset(id, searchValue):
                         "query": searchValue,
                         "fields": ["description", "keywords", "contact", "publisher", "citation",
                                    "genre", "creator", "headline", "abstract", "theme", "producer", "author",
-                                   "sponsor", "provider", "name", "measurementTechnique", "maintainer", "editor",
+                                   "sponsor", "provider", "title",
+                                   "instrument", "maintainer", "editor",
                                    "copyrightHolder", "contributor", "contentLocation", "about", "rights",
                                    "useConstraints",
                                    "status", "scope", "metadataProfile", "metadataIdentifier", "distributionInfo",
                                    "dataQualityInfo",
-                                   "contentInfo", "ResearchInfrastructure", "EssentialVariables", "potentialTopics"],
+                                   "contentInfo",
+                                   "repo",
+                                   "essential_variables",
+                                   "potential_topics"],
                         "type": "best_fields",
                         "minimum_should_match": "50%"
                     }
@@ -760,7 +764,7 @@ def graphV_dataset(id, searchValue):
         },
     }
 
-    result = es.search(index="envri", body=query_body)
+    result = es.search(index="dataset", body=query_body)
     numHits = result['hits']['total']['value']
 
     lstDataset = {}
@@ -771,11 +775,11 @@ def graphV_dataset(id, searchValue):
 
     for searchResult in result['hits']['hits']:
         result = searchResult['_source']
-        RI = detectRI(result['url'])
+        RI = detectRI(result['source'])
 
-        url = result['url'][0]
+        url = result['source'][0]
         caption = result['description']
-        tooltip = result['name']
+        tooltip = result['title']
         id = id + 1
         img = "/static/images/dataset.png"
 
