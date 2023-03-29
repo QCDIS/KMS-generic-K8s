@@ -92,7 +92,7 @@ def genericpages(request):
             })
 
         except:
-            searchValue = ''
+            return render(request, 'graphV.html', {})
     # ----------------------------------------------
     elif page == "home":
         request.session['filters'] = []
@@ -315,7 +315,7 @@ ResearchInfrastructures = {
         'label': 'Multi-domain',
         'title': 'Integrated Carbon Observation System',
         'shape': 'image',
-        'image': "/static/images/ENVRI-Collection/RIs-graph/ICOS.jpg",
+        'image': f"/{base_path}/static/images/ENVRI-Collection/RIs-graph/ICOS.jpg",
         'imagePadding': {'left': 2, 'top': 2, 'right': 2, 'bottom': 2},
         'size': 20,
         'color': {
@@ -329,7 +329,7 @@ ResearchInfrastructures = {
         'label': 'Marine',
         'title': 'Pan-European infrastructure for ocean and marine data management',
         'shape': 'image',
-        'image': "/static/images/ENVRI-Collection/RIs-graph/SeaDataNet.jpg",
+        'image': f"/{base_path}/static/images/ENVRI-Collection/RIs-graph/SeaDataNet.jpg",
         'imagePadding': {'left': 2, 'top': 2, 'right': 2, 'bottom': 2},
         'size': 35,
         'color': {
@@ -343,7 +343,7 @@ ResearchInfrastructures = {
         'label': 'Multi-domain',
         'title': 'An e-Infrastructure for basic research on biodiversity and ecosystems',
         'shape': 'image',
-        'image': "/static/images/ENVRI-Collection/RIs-graph/LifeWatchERIC.png",
+        'image': f"/{base_path}/static/images/ENVRI-Collection/RIs-graph/LifeWatchERIC.png",
         'imagePadding': {'left': 2, 'top': 2, 'right': 2, 'bottom': 2},
         'size': 30,
         'color': {
@@ -357,7 +357,7 @@ ResearchInfrastructures = {
         'label': 'Terrestrial ecosystem / Biodiversity',
         'title': 'Analysis and Experimentation on Ecosystems',
         'shape': 'image',
-        'image': "/static/images/ENVRI-Collection/RIs-graph/anaee.png",
+        'image': f"/{base_path}/static/images/ENVRI-Collection/RIs-graph/anaee.png",
         'imagePadding': {'left': 2, 'top': 2, 'right': 2, 'bottom': 2},
         'size': 30,
         'color': {
@@ -371,7 +371,7 @@ ResearchInfrastructures = {
         'label': 'Atmospheric',
         'title': 'The Aerosol, Clouds and Trace Gases Research Infrastructure',
         'shape': 'image',
-        'image': "/static/images/ENVRI-Collection/RIs-graph/actris.png",
+        'image': f"/{base_path}/static/images/ENVRI-Collection/RIs-graph/actris.png",
         'imagePadding': {'left': 2, 'top': 2, 'right': 2, 'bottom': 2},
         'size': 30,
         'color': {
@@ -385,7 +385,7 @@ ResearchInfrastructures = {
         'label': 'Marine / Freshwater',
         'title': 'EU network of mesocosms facilities for research on marine and freshwater',
         'shape': 'image',
-        'image': "/static/images/ENVRI-Collection/RIs-graph/AQUACOSM.png",
+        'image': f"/{base_path}/static/images/ENVRI-Collection/RIs-graph/AQUACOSM.png",
         'imagePadding': {'left': 2, 'top': 2, 'right': 2, 'bottom': 2},
         'size': 40,
         'color': {
@@ -399,7 +399,7 @@ ResearchInfrastructures = {
         'label': 'Atmosphere',
         'title': 'Atmospheric dynamics Research InfraStructure in Europe',
         'shape': 'image',
-        'image': "/static/images/ENVRI-Collection/RIs-graph/arise.jpg",
+        'image': f"/{base_path}/static/images/ENVRI-Collection/RIs-graph/arise.jpg",
         'imagePadding': {'left': 2, 'top': 2, 'right': 2, 'bottom': 2},
         'size': 30,
         'color': {
@@ -413,7 +413,7 @@ ResearchInfrastructures = {
         'label': 'River / Marine',
         'title': 'Preparatory Phase For The Paneuropean Research Infrastructure',
         'shape': 'image',
-        'image': "/static/images/ENVRI-Collection/RIs-graph/DANUBIUS-RI.png",
+        'image': f"/{base_path}/static/images/ENVRI-Collection/RIs-graph/DANUBIUS-RI.png",
         'imagePadding': {'left': 2, 'top': 2, 'right': 2, 'bottom': 2},
         'size': 40,
         'color': {
@@ -427,7 +427,7 @@ ResearchInfrastructures = {
         'label': 'Terrestrial ecosystem / Biodiversity',
         'title': 'Distributed System of Scientific Collections',
         'shape': 'image',
-        'image': "/static/images/ENVRI-Collection/RIs-graph/Dissco.png",
+        'image': f"/{base_path}/static/images/ENVRI-Collection/RIs-graph/Dissco.png",
         'imagePadding': {'left': 2, 'top': 2, 'right': 2, 'bottom': 2},
         'size': 30,
         'color': {
@@ -441,7 +441,7 @@ ResearchInfrastructures = {
         'label': 'Atmospheric',
         'title': 'EISCAT Scientific Association',
         'shape': 'image',
-        'image': "/static/images/ENVRI-Collection/RIs-graph/EISCAT3D.png",
+        'image': f"/{base_path}/static/images/ENVRI-Collection/RIs-graph/EISCAT3D.png",
         'imagePadding': {'left': 2, 'top': 2, 'right': 2, 'bottom': 2},
         'size': 20,
         'color': {
@@ -455,7 +455,7 @@ ResearchInfrastructures = {
         'label': 'Biodiversity / Ecosystems',
         'title': 'Long-Term Ecosystem Research in Europe',
         'shape': 'image',
-        'image': "/static/images/ENVRI-Collection/RIs-graph/elterRI.png",
+        'image': f"/{base_path}/static/images/ENVRI-Collection/RIs-graph/elterRI.png",
         'imagePadding': {'left': 2, 'top': 2, 'right': 2, 'bottom': 2},
         'size': 20,
         'color': {
@@ -469,7 +469,7 @@ ResearchInfrastructures = {
         'label': 'Marine / Biodiversity',
         'title': 'Long-Term Ecosystem Research in Europe',
         'shape': 'image',
-        'image': "/static/images/ENVRI-Collection/RIs-graph/EMBRC.png",
+        'image': f"/{base_path}/static/images/ENVRI-Collection/RIs-graph/EMBRC.png",
         'imagePadding': {'left': 2, 'top': 2, 'right': 2, 'bottom': 2},
         'size': 35,
         'color': {
@@ -483,7 +483,7 @@ ResearchInfrastructures = {
         'label': 'Multi-domain',
         'title': 'European Multidisciplinary Seafloor and water column Observatory',
         'shape': 'image',
-        'image': "/static/images/ENVRI-Collection/RIs-graph/EMSOERIC.png",
+        'image': f"/{base_path}/static/images/ENVRI-Collection/RIs-graph/EMSOERIC.png",
         'imagePadding': {'left': 2, 'top': 2, 'right': 2, 'bottom': 2},
         'size': 35,
         'color': {
@@ -497,7 +497,7 @@ ResearchInfrastructures = {
         'label': 'Terrestrial Ecosystem',
         'title': 'European Infrastructure for Plant Phenotyping',
         'shape': 'image',
-        'image': "/static/images/ENVRI-Collection/RIs-graph/EMPHASIS.png",
+        'image': f"/{base_path}/static/images/ENVRI-Collection/RIs-graph/EMPHASIS.png",
         'imagePadding': {'left': 2, 'top': 2, 'right': 2, 'bottom': 2},
         'size': 12,
         'color': {
@@ -511,7 +511,7 @@ ResearchInfrastructures = {
         'label': 'Solid Earth Science',
         'title': 'European Plate Observing System',
         'shape': 'image',
-        'image': "/static/images/ENVRI-Collection/RIs-graph/EPOS.png",
+        'image': f"/{base_path}/static/images/ENVRI-Collection/RIs-graph/EPOS.png",
         'imagePadding': {'left': 2, 'top': 2, 'right': 2, 'bottom': 2},
         'size': 25,
         'color': {
@@ -525,7 +525,7 @@ ResearchInfrastructures = {
         'label': 'Atmospheric',
         'title': 'The EUropean Facility for Airborne Research',
         'shape': 'image',
-        'image': "/static/images/ENVRI-Collection/RIs-graph/EUFAR.jpg",
+        'image': f"/{base_path}/static/images/ENVRI-Collection/RIs-graph/EUFAR.jpg",
         'imagePadding': {'left': 2, 'top': 2, 'right': 2, 'bottom': 2},
         'size': 35,
         'color': {
@@ -539,7 +539,7 @@ ResearchInfrastructures = {
         'label': 'Marine',
         'title': 'European Research Infrastructure Consortium for observing the Ocean',
         'shape': 'image',
-        'image': "/static/images/ENVRI-Collection/RIs-graph/euroArgo.png",
+        'image': f"/{base_path}/static/images/ENVRI-Collection/RIs-graph/euroArgo.png",
         'imagePadding': {'left': 2, 'top': 2, 'right': 2, 'bottom': 2},
         'size': 40,
         'color': {
@@ -553,7 +553,7 @@ ResearchInfrastructures = {
         'label': 'Marine',
         'title': 'An alliance of European marine research infrastructure to meet the evolving needs of the research and industrial communities',
         'shape': 'image',
-        'image': "/static/images/ENVRI-Collection/RIs-graph/Eurofleets.jpg",
+        'image': f"/{base_path}/static/images/ENVRI-Collection/RIs-graph/Eurofleets.jpg",
         'imagePadding': {'left': 2, 'top': 2, 'right': 2, 'bottom': 2},
         'size': 20,
         'color': {
@@ -567,7 +567,7 @@ ResearchInfrastructures = {
         'label': 'Marine',
         'title': 'European Global Ocean Observing System',
         'shape': 'image',
-        'image': "/static/images/ENVRI-Collection/RIs-graph/EuroGOOS.png",
+        'image': f"/{base_path}/static/images/ENVRI-Collection/RIs-graph/EuroGOOS.png",
         'imagePadding': {'left': 2, 'top': 2, 'right': 2, 'bottom': 2},
         'size': 30,
         'color': {
@@ -581,7 +581,7 @@ ResearchInfrastructures = {
         'label': 'Atmospheric',
         'title': 'Integration of European Simulation Chambers for Investigating Atmospheric Processes',
         'shape': 'image',
-        'image': "/static/images/ENVRI-Collection/RIs-graph/EUROCHAMP.png",
+        'image': f"/{base_path}/static/images/ENVRI-Collection/RIs-graph/EUROCHAMP.png",
         'imagePadding': {'left': 2, 'top': 2, 'right': 2, 'bottom': 2},
         'size': 30,
         'color': {
@@ -595,7 +595,7 @@ ResearchInfrastructures = {
         'label': 'Atmospheric',
         'title': 'Integrated access to balloon-borne platforms for innovative research and technology',
         'shape': 'image',
-        'image': "/static/images/ENVRI-Collection/RIs-graph/HEMERA.jpg",
+        'image': f"/{base_path}/static/images/ENVRI-Collection/RIs-graph/HEMERA.jpg",
         'imagePadding': {'left': 2, 'top': 2, 'right': 2, 'bottom': 2},
         'size': 40,
         'color': {
@@ -609,7 +609,7 @@ ResearchInfrastructures = {
         'label': 'Atmospheric',
         'title': 'In Service Aircraft for a Global Observing System',
         'shape': 'image',
-        'image': "/static/images/ENVRI-Collection/RIs-graph/IAGOSERI.png",
+        'image': f"/{base_path}/static/images/ENVRI-Collection/RIs-graph/IAGOSERI.png",
         'imagePadding': {'left': 2, 'top': 2, 'right': 2, 'bottom': 2},
         'size': 20,
         'color': {
@@ -623,7 +623,7 @@ ResearchInfrastructures = {
         'label': 'Terrestrial Ecosystem',
         'title': 'Building Capacity For Environmental Research And Monitoring In Arctic And Neighbouring Alpine And Forest Areas',
         'shape': 'image',
-        'image': "/static/images/ENVRI-Collection/RIs-graph/INTERACT.jpg",
+        'image': f"/{base_path}/static/images/ENVRI-Collection/RIs-graph/INTERACT.jpg",
         'imagePadding': {'left': 2, 'top': 2, 'right': 2, 'bottom': 2},
         'size': 30,
         'color': {
@@ -637,7 +637,7 @@ ResearchInfrastructures = {
         'label': 'Multi-domain',
         'title': 'Infrastructure For The European Network For Earth System Modelling Enes',
         'shape': 'image',
-        'image': "/static/images/ENVRI-Collection/RIs-graph/ISENES.png",
+        'image': f"/{base_path}/static/images/ENVRI-Collection/RIs-graph/ISENES.png",
         'imagePadding': {'left': 2, 'top': 2, 'right': 2, 'bottom': 2},
         'size': 30,
         'color': {
@@ -651,7 +651,7 @@ ResearchInfrastructures = {
         'label': 'Marine',
         'title': 'The European Integrated Infrastructure For In Situ Coastal Observation',
         'shape': 'image',
-        'image': "/static/images/ENVRI-Collection/RIs-graph/JERICO.jpg",
+        'image': f"/{base_path}/static/images/ENVRI-Collection/RIs-graph/JERICO.jpg",
         'imagePadding': {'left': 2, 'top': 2, 'right': 2, 'bottom': 2},
         'size': 30,
         'color': {
@@ -665,7 +665,7 @@ ResearchInfrastructures = {
         'label': 'Multi-domain',
         'title': 'Svalbard integrated Earth observing system',
         'shape': 'image',
-        'image': "/static/images/ENVRI-Collection/RIs-graph/sios.png",
+        'image': f"/{base_path}/static/images/ENVRI-Collection/RIs-graph/sios.png",
         'imagePadding': {'left': 2, 'top': 2, 'right': 2, 'bottom': 2},
         'size': 35,
         'color': {
@@ -679,7 +679,7 @@ ResearchInfrastructures = {
         'label': 'Knowledge Base',
         'title': 'Multi-domain',
         'shape': 'image',
-        'image': "/static/images/knowledge_base_icon.png",
+        'image': f"/{base_path}/static/images/knowledge_base_icon.png",
         'imagePadding': {'left': 2, 'top': 2, 'right': 2, 'bottom': 2},
         'size': 35,
         'color': {
@@ -746,12 +746,16 @@ def graphV_dataset(id, searchValue):
                         "query": searchValue,
                         "fields": ["description", "keywords", "contact", "publisher", "citation",
                                    "genre", "creator", "headline", "abstract", "theme", "producer", "author",
-                                   "sponsor", "provider", "name", "measurementTechnique", "maintainer", "editor",
+                                   "sponsor", "provider", "title",
+                                   "instrument", "maintainer", "editor",
                                    "copyrightHolder", "contributor", "contentLocation", "about", "rights",
                                    "useConstraints",
                                    "status", "scope", "metadataProfile", "metadataIdentifier", "distributionInfo",
                                    "dataQualityInfo",
-                                   "contentInfo", "ResearchInfrastructure", "EssentialVariables", "potentialTopics"],
+                                   "contentInfo",
+                                   "repo",
+                                   "essential_variables",
+                                   "potential_topics"],
                         "type": "best_fields",
                         "minimum_should_match": "50%"
                     }
@@ -760,7 +764,7 @@ def graphV_dataset(id, searchValue):
         },
     }
 
-    result = es.search(index="envri", body=query_body)
+    result = es.search(index="dataset", body=query_body)
     numHits = result['hits']['total']['value']
 
     lstDataset = {}
@@ -771,20 +775,20 @@ def graphV_dataset(id, searchValue):
 
     for searchResult in result['hits']['hits']:
         result = searchResult['_source']
-        RI = detectRI(result['url'])
+        RI = detectRI(result['source'])
 
-        url = result['url'][0]
+        url = result['source'][0]
         caption = result['description']
-        tooltip = result['name']
+        tooltip = result['title']
         id = id + 1
-        img = "/static/images/dataset.png"
+        img = f"/{base_path}/static/images/dataset.png"
 
         if RI not in lstAddedRIs:
             lstAddedRIs.append(RI)
             nodes.append(ResearchInfrastructures[RI])
             edges.append(createEdge(Query['id'], ResearchInfrastructures[RI]['id']))
             nodes.append(createNode(id, ['Datasets'], ResearchInfrastructures[RI]['url'], ['Datasets'],
-                                    "/static/images/datasetCollectionlogo.png", 30))
+                                    f"/{base_path}/static/images/datasetCollectionlogo.png", 30))
             lstDataset[RI] = id
             edges.append(createEdge(ResearchInfrastructures[RI]['id'], lstDataset[RI]))
             id = id + 1
@@ -835,14 +839,14 @@ def graphV_webSearch(id, searchValue):
         caption = result['title']
         tooltip = result['pageContetnts']
         id = id + 1
-        img = "/static/images/webpageslogo.png"
+        img = f"/{base_path}/static/images/webpageslogo.png"
 
         if RI not in lstAddedRIs:
             lstAddedRIs.append(RI)
             nodes.append(ResearchInfrastructures[RI])
             edges.append(createEdge(Query['id'], ResearchInfrastructures[RI]['id']))
             nodes.append(createNode(id, ['Webpages'], ResearchInfrastructures[RI]['url'], ['Webpages'],
-                                    "/static/images/websitelogo.png", 30))
+                                    f"/{base_path}/static/images/websitelogo.png", 30))
             lstWebpages[RI] = id
             edges.append(createEdge(ResearchInfrastructures[RI]['id'], lstWebpages[RI]))
             id = id + 1
@@ -889,14 +893,14 @@ def graphV_webAPI(id, searchValue):
         caption = result['name']
         tooltip = result['description']
         id = id + 1
-        img = "/static/images/webapilogo.jpg"
+        img = f"/{base_path}/static/images/webapilogo.jpg"
 
         if RI not in lstAddedRIs:
             lstAddedRIs.append(RI)
             nodes.append(ResearchInfrastructures[RI])
             edges.append(createEdge(Query['id'], ResearchInfrastructures[RI]['id']))
             nodes.append(createNode(id, ['Web API'], ResearchInfrastructures[RI]['url'], ['Web API'],
-                                    "/static/images/WebAPIsLogo.png", 30))
+                                    f"/{base_path}/static/images/WebAPIsLogo.png", 30))
             lstWebAPIs[RI] = id
             edges.append(createEdge(ResearchInfrastructures[RI]['id'], lstWebAPIs[RI]))
             id = id + 1
