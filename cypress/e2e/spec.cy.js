@@ -76,7 +76,7 @@ describe('Test home page', () => {
       'Web APIs',
       'Notebooks',
       'Images',
-      'Graph based',  // FIXME should not open new tab
+      'Graph based',
       'Pie chart',
       'Publications',
       'R&D team',
