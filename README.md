@@ -23,3 +23,17 @@ manage.py  runserver 0.0.0.0:8000
 - KMS_ADMIN_USERNAME=<ADMIN_USERNAME>
 - KMS_ADMIN_PASSWORD=<ADMIN_PASSWORD>
 - BASE_PATH=search
+
+
+## Testing
+
+Frontend tests are run with [Cypress](https://www.cypress.io/).
+To get started:
+
+```bash
+npm install cypress --save-dev
+npx cypress open
+```
+
+With Pycharm, tests can be run with the plugin
+[Cypress Support](https://plugins.jetbrains.com/plugin/13819-cypress-support).
