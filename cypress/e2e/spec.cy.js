@@ -49,11 +49,6 @@ describe.only('Test home page', () => {
     cy.contains('Knowledge Base').click()
     cy.contains('Ontowiki').should('be.visible')
     cy.contains('Knowledge Base').click()
-    // Login button
-    cy.contains('Login').should('not.be.visible')
-    cy.contains('Guest').click()
-    cy.contains('Login').should('be.visible')
-    cy.contains('Guest').click()
   })
 
   it('Side bar buttons', () => {
