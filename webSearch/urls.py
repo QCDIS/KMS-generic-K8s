@@ -9,5 +9,4 @@ urlpatterns = [
     re_path(r'^aggregates', views.aggregates, name='aggregates'),
     re_path(r'^addToBasket', views.addToBasket, name='addToBasket'),
     re_path(r'^downloadCart', views.downloadCart, name='downloadCart'),
-    re_path(r'^sendFeedback', views.sendFeedback, name='sendFeedback'),
 ]
