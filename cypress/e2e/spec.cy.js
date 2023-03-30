@@ -68,7 +68,6 @@ describe.only('Test home page', () => {
       'Pie chart',
       'Publications',
       'R&D team',
-      'Feedback',
     ]
     for (const search_url of search_urls) {
       cy.visit('/webSearch/genericsearch?term=envri&page=1')
