@@ -1,6 +1,4 @@
-import json
 import os
-import uuid
 
 import numpy as np
 import requests
@@ -49,11 +47,6 @@ elasticsearch_password = os.environ.get('ELASTICSEARCH_PASSWORD')
 
 
 base_path = os.environ.get('BASE_PATH').strip()
-
-
-# -----------------------------------------------------------------------------------------------------------------------
-def aggregates(request):
-    return 0
 
 
 # -----------------------------------------------------------------------------------------------------------------------
@@ -279,66 +272,6 @@ def potentialSearchTerm(term):
     alternative_search_term = alternative_search_term.lstrip()
 
     return alternative_search_term
-
-
-
-
-# -----------------------------------------------------------------------------------------------------------------------
-# Create your views here.
-def indexingpipeline(request):
-    es = Elasticsearch(elasticsearch_url, http_auth=[elasticsearch_username, elasticsearch_password])
-    index = Index('webapi', es)
-
-    if not es.indices.exists(index='webapi'):
-        index.settings(
-            index={'mapping': {'ignore_malformed': True}}
-        )
-        index.create()
-    else:
-        es.indices.close(index='webapi')
-        put = es.indices.put_settings(
-            index='webapi',
-            body={
-                "index": {
-                    "mapping": {
-                        "ignore_malformed": True
-                    }
-                }
-            })
-        es.indices.open(index='webapi')
-
-    root = (os.getcwd() + "/webAPI/DB/")
-    for path, subdirs, files in os.walk(root):
-        for name in files:
-            indexfile = os.path.join(path, name)
-            indexfile = open_file(indexfile)
-            newRecord = {
-                "name": indexfile["API name"],
-                "description": indexfile["Description"],
-                "url": indexfile["Url"],
-                "category": indexfile["Category"],
-                "provider": indexfile["Provider"],
-                "serviceType": indexfile["ServiceType"],
-                "documentation": indexfile["Documentation"],
-                "architecturalStyle": indexfile["Architectural Style"],
-                "endpointUrl": indexfile["Endpoint Url"],
-                "sslSupprt": indexfile["Support SSL"],
-                "logo": indexfile["Logo"]
-            }
-
-            res = es.index(index="webapi", id=uuid.uuid4(), body=newRecord)
-            es.indices.refresh(index="webapi")
-
-    return render(request, 'webcontent_results.html', {'base_path': base_path})
-
-
-# -----------------------------------------------------------------------------------------------------------------------
-def open_file(file):
-    read_path = file
-    with open(read_path, "r", errors='ignore') as read_file:
-        print(read_path)
-        data = json.load(read_file)
-        return data
 
 
 # -----------------------------------------------------------------------------------------------------------------------
