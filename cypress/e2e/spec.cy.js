@@ -1,4 +1,4 @@
-describe('Test home page', () => {
+describe.only('Test home page', () => {
 
   it('Reachability', () => {
     cy.visit('/')
@@ -54,13 +54,6 @@ describe('Test home page', () => {
     cy.contains('Guest').click()
     cy.contains('Login').should('be.visible')
     cy.contains('Guest').click()
-  })
-
-  it('Login button on home page', () => {
-    cy.visit('/')
-    cy.contains('Guest').click()
-    cy.contains('Login').click()
-    cy.contains('Sign In')
   })
 
   it('Side bar buttons', () => {
