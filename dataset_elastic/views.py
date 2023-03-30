@@ -53,20 +53,6 @@ aggregares = {
 
 
 # ----------------------------------------------------------------------------------------
-def aggregates(request):
-    query_body = {
-        "from": 'page',
-        "size": 10,
-        "query": {
-            "match_all": {}
-        },
-        "aggs": aggregares
-    }
-    result = es.search(index="dataset", body=query_body)
-    return JsonResponse(result, safe=True, json_dumps_params={'ensure_ascii': False})
-
-
-# ----------------------------------------------------------------------------------------
 def genericsearch(request):
     try:
         term = request.GET['term']
@@ -375,87 +361,14 @@ def rest(request):
     return JsonResponse(result, safe=True, json_dumps_params={'ensure_ascii': False})
 
 
-# -------------------------------------------------------------------------
-def home(request):
-    # index_elastic()
-    context = {'base_path': base_path}
-    # context['form'] = SelectionForm()
-    # context['result'] = SelectionForm.fields
-    return render(request, "home.html", context)
-
-
-# ----------------------------------------------------------------------------------------
-def result(request):
-    context = {'base_path': base_path}
-    # context['result'] = SelectionForm()
-    return render(request, "result.html", context)
-
-
-# -------------------------------------------------------------------------
-def search_index(request):
-    results = []
-    keywords_term = ""
-    abstract_term = ""
-    all_fields_term = ""
-    year_from_term = ""
-    year_to_term = ""
-
-    """
-    if request.GET.get('keywords') and request.GET.get('abstract'):
-        keywords_term = request.GET['keywords']
-        abstract_term = request.GET['abstract']
-    elif request.GET.get('keywords'):
-        keywords_term = request.GET['keywords']
-    elif request.GET.get('abstract'):
-        abstract_term = request.GET['abstract']
-    elif request.GET.get('all_fields'):
-        all_fields_term = request.GET['all_fields']
-    """
-
-    try:
-        keywords_term = request.GET['keywords']
-    except:
-        pass
-    try:
-        abstract_term = request.GET['abstract']
-    except:
-        pass
-    try:
-        all_fields_term = request.GET['all_fields']
-    except:
-        pass
-    try:
-        year_from_term = request.GET['year_from']
-    except:
-        pass
-    try:
-        year_to_term = request.GET['year_to']
-    except:
-        pass
-
-    search_term = keywords_term or abstract_term or all_fields_term or year_from_term or year_to_term
-
-    # print(search_term)
-    # results = esearch(keywords = keywords_term, abstract=abstract_term, all_terms = all_fields_term)
-    results = esearch(keywords=keywords_term,
-                      abstract=abstract_term,
-                      all_fields=all_fields_term,
-                      year_from=year_from_term,
-                      year_to=year_to_term)
-
-    # print(results)
-    context = {'results': results, 'count': len(results), 'search_term': search_term, 'base_path': base_path}
-    return render(request, 'search.html', context)
-
-
 # ----------------------------------------------------------------
 def esearch(keywords="",
             abstract="",
             all_fields="",
             year_from="",
             year_to="",
-            lon="",
-            lat="",
+            lon="0",
+            lat="0",
             station="",
             discipline="",
             author="",
@@ -571,15 +484,6 @@ def get_results_rest(response):
             'abstract': str(hit.abstract)
         }
         results[hit.identifier] = result
-    return results
-
-
-# ----------------------------------------------------------------------------------------
-def get_results(response):
-    results = []
-    for hit in response:
-        result_tuple = (hit.identifier, hit.landing_page, hit.name)
-        results.append(result_tuple)
     return results
 
 

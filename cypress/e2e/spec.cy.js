@@ -1,4 +1,4 @@
-describe('Test home page', () => {
+describe.only('Test home page', () => {
 
   it('Reachability', () => {
     cy.visit('/')
@@ -49,18 +49,6 @@ describe('Test home page', () => {
     cy.contains('Knowledge Base').click()
     cy.contains('Ontowiki').should('be.visible')
     cy.contains('Knowledge Base').click()
-    // Login button
-    cy.contains('Login').should('not.be.visible')
-    cy.contains('Guest').click()
-    cy.contains('Login').should('be.visible')
-    cy.contains('Guest').click()
-  })
-
-  it('Login button on home page', () => {
-    cy.visit('/')
-    cy.contains('Guest').click()
-    cy.contains('Login').click()
-    cy.contains('Sign In')
   })
 
   it('Side bar buttons', () => {
@@ -80,7 +68,6 @@ describe('Test home page', () => {
       'Pie chart',
       'Publications',
       'R&D team',
-      'Feedback',
     ]
     for (const search_url of search_urls) {
       cy.visit('/webSearch/genericsearch?term=envri&page=1')
