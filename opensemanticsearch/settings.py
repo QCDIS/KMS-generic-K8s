@@ -19,12 +19,14 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = (os.getenv('DEBUG', 'False').lower() == 'true')
 
-ALLOWED_HOSTS = os.getenv('HOST')
-if ALLOWED_HOSTS is None:
+try:
+    ALLOWED_HOSTS = [os.environ['HOST']]
+except KeyError:
     ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
-CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS')
-if CSRF_TRUSTED_ORIGINS is None:
+try:
+    CSRF_TRUSTED_ORIGINS = [os.environ['CSRF_TRUSTED_ORIGINS']]
+except KeyError:
     CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1', 'http://localhost']
 
 # Application definition
