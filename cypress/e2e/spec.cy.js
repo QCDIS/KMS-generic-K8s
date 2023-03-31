@@ -52,12 +52,17 @@ describe.only('Test home page', () => {
   })
 
   it('Side bar buttons', () => {
-    const search_urls = [
-      `webSearch/genericsearch?page=1`,
-      `dataset_elastic/genericsearch?page=1`,
-      `webAPI/genericsearch?page=1`,
-      `notebookSearch/genericsearch?page=1`,
-      `webSearch/genericsearch?page=1&searchtype=imagesearch`,
+    const term = 'xyz'
+    const urls = [
+      `/webSearch/genericsearch?page=1&term=${term}`,
+      `/dataset_elastic/genericsearch?page=1&term=${term}`,
+      `/webAPI/genericsearch?page=1&term=${term}`,
+      `/notebookSearch/genericsearch?page=1&term=${term}`,
+      `/webSearch/genericsearch?page=1&searchtype=imagesearch&term=${term}`,
+      `/genericpages/genericpages?page=graphV&term=${term}`,
+      `/genericpages/genericpages?page=pieChart&term=${term}`,
+      `/genericpages/genericpages?page=publications&term=${term}`,
+      `/genericpages/genericpages?page=RnD&term=${term}`,
     ]
     const menu_entries = [
       'Datasets',
@@ -69,15 +74,15 @@ describe.only('Test home page', () => {
       'Publications',
       'R&D team',
     ]
-    for (const search_url of search_urls) {
-      cy.visit('/webSearch/genericsearch?term=envri&page=1')
+    for (const url of urls) {
+      cy.visit(url)
       for (const menu_entry of menu_entries) {
         cy.contains(menu_entry).each(link => {
           if (link.prop('href'))
-            cy.request({
-              url: link.prop('href'),
-            })
-          cy.log( link.prop('href'))
+            if (! link.prop('href').includes('javascript'))
+              cy.request({
+                url: link.prop('href'),
+              })
         })
       }
     }
