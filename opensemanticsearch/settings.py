@@ -13,22 +13,19 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Add to python path so includes of ETL modules will work in Django environment
-import sys
-
-sys.path.append("/usr/lib/python3/dist-packages")
-sys.path.append("/usr/lib/python3/dist-packages/opensemanticetl")
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '^8nhh!o3&s91t33ol^*g_6s=)@)3^s-k=w@u1(5h@83w*hyl0^'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = (os.getenv('DEBUG', 'False').lower() == 'true')
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = os.getenv('HOST')
+if ALLOWED_HOSTS is None:
+    ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+
+CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS')
+if CSRF_TRUSTED_ORIGINS is None:
+    CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1', 'http://localhost']
 
 # Application definition
 

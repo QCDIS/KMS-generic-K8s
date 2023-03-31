@@ -1,4 +1,4 @@
-describe.only('Test home page', () => {
+describe('Test home page', () => {
 
   it('Reachability', () => {
     cy.visit('/')
