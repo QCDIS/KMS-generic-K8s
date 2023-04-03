@@ -42,6 +42,8 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE = (
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -49,7 +51,6 @@ MIDDLEWARE = (
     # 'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
 )
 
 ROOT_URLCONF = 'opensemanticsearch.urls'
@@ -124,8 +125,7 @@ STATIC_URL = base_path + '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-
-STATIC_ROOT = os.path.join(BASE_DIR, STATIC_URL)
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
