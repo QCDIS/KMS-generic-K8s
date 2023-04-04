@@ -6,8 +6,11 @@ from django.urls import re_path
 
 base_path = os.environ.get('BASE_PATH').strip()
 
+if base_path:
+    base_path += '/'
+
 urlpatterns = [
-    re_path(r'^'+base_path+'/', include([
+    re_path(r'^'+base_path, include([
         re_path(r'^dataset_elastic/',
                 include(('dataset_elastic.urls', 'dataset_elastic'), namespace="dataset_elastic")),
         re_path(r'^notebookSearch/', include(('notebookSearch.urls', 'notebookSearch'), namespace="notebookSearch")),
