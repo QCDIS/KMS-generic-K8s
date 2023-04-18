@@ -3,6 +3,7 @@ from django.conf.urls import include
 from django.contrib import admin
 from django.urls import path
 from django.urls import re_path
+from django.views.generic.base import RedirectView
 
 base_path = os.environ.get('BASE_PATH').strip()
 
@@ -20,6 +21,11 @@ urlpatterns = [
         path('', include(('genericpages.urls', 'genericpages'), namespace="genericpages"))
     ])),
 ]
+
+if base_path:
+    urlpatterns.append(
+        re_path(r'^/?$', RedirectView.as_view(url=base_path, permanent=False)),
+        )
 
 # urlpatterns = [
 # 	path('admin/', admin.site.urls),
