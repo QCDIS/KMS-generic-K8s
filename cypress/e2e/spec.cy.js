@@ -65,6 +65,8 @@ describe('Test home page', () => {
       `/genericpages/genericpages?page=RnD&term=${term}`,
     ]
     const menu_entries = [
+      'ENVRI-HUB',
+      'Webpages',
       'Datasets',
       'Web APIs',
       'Notebooks',
