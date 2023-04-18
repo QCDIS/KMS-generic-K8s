@@ -39,6 +39,8 @@
     <link href="{% static '/starRating/starability-minified/starability-all.min.css'%}" rel="stylesheet"
           type="text/css"/>
 
+    <script src="{% static '/js/kms-common.js'%}"></script>
+
     <link crossorigin="" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
           integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
           rel="stylesheet"/>
@@ -162,6 +164,17 @@
                                 <span class="search-icon"><i aria-hidden="true" class="ti-search"
                                                              onclick="search(2);"></i></span>
                             </div>
+                        </div>
+                        <div>
+                          <ul class="pcoded-item pcoded-left-item">
+                            <li class="pcoded">
+                              <a href="#" onclick="goToENVRIHUB();">
+                                <span class="pcoded-micon"><i class="ti-star"></i><b>D</b></span>
+                                <span class="pcoded-mtext" data-i18n="nav.dash.main">ENVRI-HUB</span>
+                                <span class="pcoded-mcaret"></span>
+                              </a>
+                            </li>
+                          </ul>
                         </div>
                         <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Search Space</div>
                         <ul class="pcoded-item pcoded-left-item">

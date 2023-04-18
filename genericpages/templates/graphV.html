@@ -34,6 +34,9 @@
     <!-- Style.css -->
     <link href="{% static '/css/style.css'%}" rel="stylesheet" type="text/css">
     <link href="{% static '/css/jquery.mCustomScrollbar.css'%}" rel="stylesheet" type="text/css">
+
+    <script src="{% static '/js/kms-common.js'%}"></script>
+
     <script src="https://cdn.anychart.com/releases/8.8.0/js/anychart-core.min.js"></script>
     <script src="https://cdn.anychart.com/releases/8.8.0/js/anychart-graph.min.js"></script>
     <script src="https://cdn.anychart.com/releases/8.8.0/js/anychart-data-adapter.min.js"></script>
@@ -296,6 +299,17 @@
                                 <span class="search-icon"><i aria-hidden="true" class="ti-search"
                                                              onclick="search(2);"></i></span>
                             </div>
+                        </div>
+                        <div>
+                          <ul class="pcoded-item pcoded-left-item">
+                            <li class="pcoded">
+                              <a href="#" onclick="goToENVRIHUB();">
+                                <span class="pcoded-micon"><i class="ti-star"></i><b>D</b></span>
+                                <span class="pcoded-mtext" data-i18n="nav.dash.main">ENVRI-HUB</span>
+                                <span class="pcoded-mcaret"></span>
+                              </a>
+                            </li>
+                          </ul>
                         </div>
                         <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Search Space</div>
                         <ul class="pcoded-item pcoded-left-item">
