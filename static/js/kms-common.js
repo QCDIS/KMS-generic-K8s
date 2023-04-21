@@ -1,6 +1,6 @@
 function goToENVRIHUB(){
 
-    const envrihub_base_url = 'https://envrihub.vm.fedcloud.eu';
+    const envrihub_base_url = 'https://envri-hub.envri.eu';
     var queryParams = new URLSearchParams(window.location.search);
     if (queryParams.has('envrihub')){
         sourcepage = queryParams.get("envrihub");
