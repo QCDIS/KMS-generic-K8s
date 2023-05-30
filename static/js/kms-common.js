@@ -1,20 +1,13 @@
 function goToENVRIHUB(){
 
     const envrihub_base_url = 'https://envri-hub.envri.eu';
+    var envrihub_path = '';
     var queryParams = new URLSearchParams(window.location.search);
     if (queryParams.has('envrihub')){
-        sourcepage = queryParams.get("envrihub");
-
-        if (sourcepage.trim()==="main" || sourcepage.trim()==="main#"  || sourcepage.trim()==="null"  || sourcepage.trim()===null){
-            window.location.href = envrihub_base_url + '/';
-            return 0;
+        if (queryParams.get("envrihub")==="sdemonstrators") {
+            envrihub_path = "sciencedemonstrators";
         }
-
-        window.location.href = envrihub_base_url + '/' + sourcepage;
-
     }
-    else{
-        window.location.href = envrihub_base_url + '/';
-    }
-
+    window.location.href = envrihub_base_url + '/' + envrihub_path;
+    return 0;
 }
