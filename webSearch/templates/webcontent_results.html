@@ -385,7 +385,7 @@
                                     <br>
                                     {% if suggestedSearchTerm != "" %}
                                         Did you mean:
-                                        <b><a href="../webSearch/genericsearch?term={{ suggestedSearchTerm }}&page=1">{{ suggestedSearchTerm }}</a></b>
+                                        <a href="../webSearch/genericsearch?term={{ suggestedSearchTerm }}&page=1" style="text-decoration: underline">{{ suggestedSearchTerm }}</a>?
                                     {% endif %}
                                     <script>
                                         //sessionStorage.setItem("SearchFailed","Yes");
