@@ -32,8 +32,8 @@ describe('Test home page', () => {
       cy.visit(`${search_url}&term=n6lzhN2FB0rJkxsAH3NSH8aMW`)
       cy.contains(`I couldn't find anything based on "n6lzhN2FB0rJkxsAH3NSH8aMW" for you!`)
       // No results, search suggestion
-      cy.visit(`${search_url}&term=gravitationnnally`)
-      cy.contains(`I couldn't find anything based on "gravitationnnally" for you! Did you mean: gravitationally`)
+      cy.visit(`${search_url}&term=seaa`)
+      cy.contains(`I couldn't find anything based on "seaa" for you! Did you mean: sea?`)
     }
   })
 

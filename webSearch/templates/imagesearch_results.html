@@ -418,14 +418,20 @@
                                             <div style="width:100%; text-align:left;">
                                                 <script>sessionStorage.setItem("searchValue", "{{searchTerm}}");
                                                 </script>
-                                                {% if NumberOfHits == 0 %}
-                                                I couldn't find <b>anything</b> based on <b>"{{searchTerm}}"</b> for
-                                                you!
-                                                <br>
-                                                {% if suggestedSearchTerm != "" %}
-                                                Did you mean:
-                                                <b><a href="../webSearch/genericsearch?term={{ suggestedSearchTerm }}&page=1&searchtype=imagesearch">{{ suggestedSearchTerm }}</a></b>
-                                                {% endif %}
+                                                {% if NumberOfHits == 10000 %}
+                                                I found <b> more than {{ NumberOfHits }}</b> results for you!
+                                                {% elif NumberOfHits > 0 %}
+                                                I found <b>{{ NumberOfHits}}</b> results for you!
+                                                {% elif NumberOfHits == 1 %}
+                                                I found only <b>one</b> result for you!
+                                                {%  else %}
+                                                  I couldn't find <b>anything</b> based on <b>"{{searchTerm}}"</b> for
+                                                  you!
+                                                  <br>
+                                                  {% if suggestedSearchTerm != "" %}
+                                                  Did you mean:
+                                                  <a href="../webSearch/genericsearch?term={{ suggestedSearchTerm }}&page=1&searchtype=imagesearch" style="text-decoration: underline">{{ suggestedSearchTerm }}</a>?
+                                                  {% endif %}
                                                 <script>
                                                             //sessionStorage.setItem("SearchFailed","Yes");
                                                             sessionStorage.setItem("searchValue", "");

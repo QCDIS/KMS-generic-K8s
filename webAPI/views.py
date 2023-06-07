@@ -73,22 +73,14 @@ def genericsearch(request):
     except:
         facet = ''
 
-    try:
-        suggestedSearchTerm = request.GET['suggestedSearchTerm']
-    except:
-        suggestedSearchTerm = ''
-
     searchResults = getSearchResults(request, facet, filter, page, term)
 
-    if suggestedSearchTerm != "":
-        searchResults["suggestedSearchTerm"] = ""
-    else:
-        suggestedSearchTerm = ""
-        if searchResults["NumberOfHits"] == 0:
-            suggestedSearchTerm = potentialSearchTerm(term)
-            searchResults = getSearchResults(request, facet, filter, page, "*")
-            searchResults["NumberOfHits"] = 0
-            searchResults["searchTerm"] = term
+    searchResults['suggestedSearchTerm'] = ''
+    if searchResults['NumberOfHits'] == 0:
+        suggestedSearchTerm = potentialSearchTerm(term)
+        suggestedResults = getSearchResults(request, facet, filter, page, suggestedSearchTerm)
+        print(suggestedSearchTerm, suggestedResults["NumberOfHits"])
+        if suggestedResults["NumberOfHits"] > 0:
             searchResults["suggestedSearchTerm"] = suggestedSearchTerm
 
     searchResults['base_path'] = base_path
