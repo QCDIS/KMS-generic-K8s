@@ -1,4 +1,6 @@
 openapi: 3.0.0
+servers:
+  - url: ../api/v1/
 info:
   description: ENVRI knowledge base search engine API
   version: "1.0.0"

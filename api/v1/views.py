@@ -1,3 +1,4 @@
+from django.views.generic import TemplateView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import permissions
@@ -5,6 +6,10 @@ from rest_framework import status
 
 from . import indexes
 from .serializers import SearchQuerySerializer
+
+
+class Doc(TemplateView):
+    template_name = 'doc.html'
 
 
 class Search(APIView):

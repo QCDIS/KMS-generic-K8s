@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'notebookSearch',
     'webSearch',
     'webAPI',
+    'api.v1',
 )
 
 MIDDLEWARE = (
