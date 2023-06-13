@@ -70,7 +70,7 @@ doc_converters = {
         'resource_type': 'web_pages',
         'title': ' '.join(doc.get('title')),
         'description': ' '.join(doc.get('pageContetnts')),
-        'url': doc.get('url'),
+        'url': doc.get('url')[0],
         'details': {
             'research_infrastructure':
                 doc.get('researchInfrastructure', [{}])[0].get('acronym'),
@@ -97,7 +97,7 @@ doc_converters = {
         'resource_type': 'notebook',
         'title': doc.get('name'),
         'description': doc.get('description'),
-        'url': doc.get('html_url')[0],
+        'url': doc.get('html_url'),
         'details': {
             'repository': doc.get('source'),
             },
