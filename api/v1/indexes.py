@@ -94,7 +94,7 @@ doc_converters = {
             },
         },
     'notebooks': lambda doc: {
-        'resource_type': 'notebook',
+        'resource_type': 'notebooks',
         'title': doc.get('name'),
         'description': doc.get('description'),
         'url': doc.get('html_url'),

@@ -119,10 +119,10 @@ components:
         resource_type:
           type: string
           enum:
-            - web_page
-            - api
-            - dataset
-            - notebook
+            - web_pages
+            - apis
+            - datasets
+            - notebooks
         title:
           type: string
           example: Sample record title
