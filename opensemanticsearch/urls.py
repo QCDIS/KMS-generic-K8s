@@ -18,6 +18,7 @@ urlpatterns = [
         re_path(r'^webSearch/', include(('webSearch.urls', 'webSearch'), namespace="webSearch")),
         re_path(r'^genericpages/', include(('genericpages.urls', 'genericpages'), namespace="genericpages")),
         re_path(r'^webAPI/', include(('webAPI.urls', 'webAPI'), namespace="webAPI")),
+        re_path(r'^api/', include(('api.urls', 'api'), namespace='api')),
         path('', include(('genericpages.urls', 'genericpages'), namespace="genericpages"))
     ])),
 ]

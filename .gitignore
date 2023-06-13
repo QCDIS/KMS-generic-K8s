@@ -1,6 +1,8 @@
 .*.swp
 *~
 
+package-lock.json
+
 venv/
 .idea/
 
@@ -19,6 +21,7 @@ tests/coverage_html/
 tests/.coverage*
 build/
 tests/report/
+tmp/
 
 migrations/
 
@@ -30,3 +33,5 @@ migrations/
 
 cypress/screenshots
 cypress/videos
+
+portman/api_v1_collection.postman.json
