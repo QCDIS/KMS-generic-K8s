@@ -125,15 +125,19 @@ components:
             - notebooks
         title:
           type: string
+          nullable: true
           example: Sample record title
         description:
           type: string
+          nullable: true
           example: Sample record description
         url:
           type: string
+          nullable: true
           example: https://example.org
         details:
-          oneOf:
+          type: object
+          anyOf:
             - $ref: '#/components/schemas/DetailsWebPages'
             - $ref: '#/components/schemas/DetailsApis'
             - $ref: '#/components/schemas/DetailsDatasets'
@@ -143,6 +147,7 @@ components:
       properties:
         research_infrastructure:
           type: string
+          nullable: true
           example: LifeWatch ERIC
     DetailsApis:
       type: object
@@ -151,10 +156,12 @@ components:
       properties:
         repository:
           type: string
+          nullable: true
           example: SeaDataNet CDI
     DetailsNotebooks:
       type: object
       properties:
         repository:
           type: string
+          nullable: true
           example: GitHub
