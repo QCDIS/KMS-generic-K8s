@@ -1,15 +1,11 @@
 openapi: 3.0.0
-servers:
-  # Added by API Auto Mocking Plugin
-  - description: SwaggerHub API Auto Mocking
-    url: https://virtserver.swaggerhub.com/gpelouze/KBSE/1.0.0
 info:
   description: ENVRI knowledge base search engine API
   version: "1.0.0"
   title: Search engine API
   license:
     name: Apache 2.0
-    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+    url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
 tags:
   - name: public
     description: Operations available to everyone
@@ -18,13 +14,13 @@ paths:
     get:
       tags:
         - public
-      summary: searche everything
+      summary: search everything
       operationId: searchAll
       description: >
         Search for all kinds of resources
         (web pages, APIs, datasets, and notebooks)
       parameters:
-        - $ref: '#/components/parameters/term'
+        - $ref: '#/components/parameters/q'
         - $ref: '#/components/parameters/skip'
         - $ref: '#/components/parameters/limit'
       responses:
@@ -47,7 +43,7 @@ paths:
       description: Search for a specific kind of resource
       parameters:
         - $ref: '#/components/parameters/resource_type'
-        - $ref: '#/components/parameters/term'
+        - $ref: '#/components/parameters/q'
         - $ref: '#/components/parameters/skip'
         - $ref: '#/components/parameters/limit'
       responses:
@@ -82,9 +78,9 @@ components:
           - apis
           - datasets
           - notebooks
-    term:
+    q:
       in: query
-      name: term
+      name: q
       description: search term
       required: false
       schema:
@@ -115,6 +111,7 @@ components:
         - resource_type
         - title
         - description
+        - url
         - details
       properties:
         resource_type:
@@ -130,6 +127,9 @@ components:
         description:
           type: string
           example: Sample record description
+        url:
+          type: string
+          example: https://example.org
         details:
           oneOf:
             - $ref: '#/components/schemas/DetailsWebPages'
