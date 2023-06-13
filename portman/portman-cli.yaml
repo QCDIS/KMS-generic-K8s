@@ -4,3 +4,5 @@ output: 'portman/api_v1_collection.postman.json'
 portmanConfigFile: 'portman/portman-config.yaml'
 includeTests: true
 runNewman: true
+newmanRunOptions:
+  iteration-data: 'portman/newman-iteration-data.json'

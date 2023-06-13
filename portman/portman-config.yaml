@@ -23,3 +23,15 @@ tests:
   contentTests: []
   extendTests: []
   variationTests: []
+overwrites:
+  - openApiOperation: '*::/*'
+    overwriteRequestQueryParams:
+      - key: q
+        value: sea
+        overwrite: true
+operationPreRequestScripts:
+  - openApiOperation: 'GET::/search/*'
+    scripts:
+      - |
+        var_id = pm.request.url.variables.indexOf('resource_type')
+        pm.request.url.variables.idx(var_id).value = pm.iterationData.get('resource_type')
