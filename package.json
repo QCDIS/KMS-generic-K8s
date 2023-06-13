@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@apideck/portman": "^1.22.0",
     "cypress": "^12.9.0"
   }
 }

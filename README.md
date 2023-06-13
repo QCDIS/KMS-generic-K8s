@@ -31,6 +31,8 @@ manage.py  runserver 0.0.0.0:8000
 
 ## Testing
 
+### UI
+
 Frontend tests are run with [Cypress](https://www.cypress.io/).
 To get started:
 
@@ -41,6 +43,16 @@ npx cypress open
 
 With Pycharm, tests can be run with the plugin
 [Cypress Support](https://plugins.jetbrains.com/plugin/13819-cypress-support).
+
+### API
+
+API tests are generated and run with [Portman](http://getportman.com).
+To get started:
+
+```bash
+npm install --save-dev @apideck/portman
+npx portman --cliOptionsFile portman/portman-cli.yaml
+```
 
 
 ## License
