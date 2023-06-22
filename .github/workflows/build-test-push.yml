@@ -40,6 +40,7 @@ jobs:
             -e "ELASTICSEARCH_PASSWORD=changeme" \
             -e "BASE_PATH=" \
             -e "SECRET_KEY=secret" \
+            -e "DEBUG=true" \
             qcdis/kms-generic:v3.9
 
       - name: Start Elasticsearch
