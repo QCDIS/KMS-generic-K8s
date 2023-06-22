@@ -5,7 +5,7 @@ ENV PYTHONUNBUFFERED 1
 
 RUN apt update && apt upgrade -y && apt install -y libenchant-2-2
 
-COPY . ./KMS-generic
+COPY ./KMS-generic ./KMS-generic
 WORKDIR /KMS-generic
 
 RUN python -m pip install --upgrade pip
