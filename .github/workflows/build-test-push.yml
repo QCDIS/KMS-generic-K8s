@@ -33,7 +33,14 @@ jobs:
 
       - name: Start docker
         run: |
-          docker run -d -p 8000:8000 qcdis/kms-generic:v3.9
+          docker run -d \
+            -p 8000:8000 \
+            -e "ELASTICSEARCH_URL=http://localhost:9200" \
+            -e "ELASTICSEARCH_USERNAME=elastic" \
+            -e "ELASTICSEARCH_PASSWORD=changeme" \
+            -e "BASE_PATH=" \
+            -e "SECRET_KEY=secret" \
+            qcdis/kms-generic:v3.9
 
       - name: Start Elasticsearch
         run: |
