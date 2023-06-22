@@ -35,7 +35,7 @@ jobs:
         run: |
           docker run -d \
             -p 8000:8000 \
-            -e "ELASTICSEARCH_URL=http://localhost:9200" \
+            -e "ELASTICSEARCH_URL=http://localhost:9200/" \
             -e "ELASTICSEARCH_USERNAME=elastic" \
             -e "ELASTICSEARCH_PASSWORD=changeme" \
             -e "BASE_PATH=" \
