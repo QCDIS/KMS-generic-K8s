@@ -1,9 +1,9 @@
 name: Build and test container
 on:
-  pull_request:
+#  pull_request:
   push:
-  schedule:
-    - cron: '0 0 5 * *'
+#  schedule:
+#    - cron: '0 0 5 * *'
 
 jobs:
   build-test-push:
