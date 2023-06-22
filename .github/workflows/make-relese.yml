@@ -8,7 +8,7 @@ jobs:
   build-test-push:
     uses: QCDIS/KMS-generic/.github/workflows/build-test-push.yml@main
     with:
-      docker_folder: KMS-generic
+      docker_folder: .
       tag: kms-generic
       push: true
     secrets:
