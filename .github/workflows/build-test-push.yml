@@ -31,6 +31,45 @@ jobs:
         run: |
           cd $DOCKER_FOLDER && docker build . --file Dockerfile -t $TAG
 
+      - name: Start docker
+        run: |
+          docker run -d -p 8000:8000 -host=172.17.0.2 $TAG:latest
+
+      - name: Start Elasticsearch
+        run: |
+          docker run --rm -d \
+            -e "discovery.type=single-node" \
+            -e "ELASTIC_PASSWORD=changeme" \
+            -e "xpack.security.http.ssl.enabled=false" \
+            --name es01 \
+            -p 9200:9200 \
+            --health-cmd 'curl -u elastic:changeme http://localhost:9200/_cat/health | grep -q green' \
+            --health-interval 10s \
+            docker.elastic.co/elasticsearch/elasticsearch:8.8.1
+
+      - name: Install test dependencies
+        run: |
+          npm install
+
+      - name: Wait until Elasticsearch is healthy
+        uses: raschmitt/wait-for-healthy-container/@v1
+        with:
+          container-name: es01
+          timeout: 120
+
+      - name: Load fixtures
+        run: |
+          pip install elasticsearch
+          python fixtures/load_fixtures.py
+
+      - name: Run API tests
+        run: |
+          npx portman --cliOptionsFile portman/portman-cli.yaml
+
+      - name: Run UI tests
+        run: |
+          npx cypress run
+
       - name: Login to github Registry
         if: ${{ inputs.push }}
         uses: docker/login-action@v2
