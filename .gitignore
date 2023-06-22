@@ -26,10 +26,10 @@ tmp/
 migrations/
 
 /var/
-/db.sqlite3
+db.sqlite3
 /.idea
-/staticfiles/
-/search/
+KMS-generic/staticfiles/
+KMS-generic/search/
 
 cypress/screenshots
 cypress/videos
