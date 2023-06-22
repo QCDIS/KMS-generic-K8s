@@ -6,7 +6,7 @@ describe('Test home page', () => {
 
   it('Basic search from home page', () => {
     cy.visit('/')
-    cy.get('#searchbox2').type('envri')
+    cy.get('#searchbox2').type('sea')
     cy.get('.search-btn').eq(1).click()
     cy.scrollTo('bottom')
     cy.get('.btn-primary').eq(1).click()

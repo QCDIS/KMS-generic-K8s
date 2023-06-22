@@ -31,6 +31,24 @@ manage.py  runserver 0.0.0.0:8000
 
 ## Testing
 
+### Test elasticsearch server
+
+```bash
+docker run --rm \
+  -e "discovery.type=single-node" \
+  -e "ELASTIC_PASSWORD=changeme" \
+  -e "xpack.security.http.ssl.enabled=false" \
+  --name es01 \
+  -p 9200:9200 \
+  docker.elastic.co/elasticsearch/elasticsearch:8.8.1
+```
+
+Load test data:
+
+```bash
+python fixtures/load_fixtures.py
+```
+
 ### UI
 
 Frontend tests are run with [Cypress](https://www.cypress.io/).
