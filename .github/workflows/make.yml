@@ -1,26 +1,17 @@
-name: build container
+name: Build and test container
 on:
   pull_request:
   push:
   schedule:
     - cron: '0 0 5 * *'
 
-
-env:
-  DOCKERFILE: Dockerfile
-  TAG: kms-generic
-  DOCKERHUB_IMAGE_ID: "qcdis/"
-
-
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Build docker
-        run: |
-          docker build . --file $DOCKERFILE -t $TAG
-
-      - name: Start docker
-        run: |
-          docker run -d -p 8000:8000 -host=172.17.0.2 $TAG:latest
+  build-test-push:
+    uses: QCDIS/KMS-generic/.github/workflows/build-test-push.yml@74-run-tests-as-github-action  # FIXME
+    with:
+      docker_folder: .
+      tag: kms-generic
+      push: false
+    secrets:
+      docker_username: ${{ secrets.DOCKERHUB_USERNAME }}
+      docker_password: ${{ secrets.DOCKERHUB_PASSWORD }}
