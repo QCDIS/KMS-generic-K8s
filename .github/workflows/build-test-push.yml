@@ -41,6 +41,7 @@ jobs:
             -e "BASE_PATH=" \
             -e "SECRET_KEY=secret" \
             -e "DEBUG=true" \
+            --name kms \
             qcdis/kms-generic:v3.9
 
       - name: Start Elasticsearch
@@ -77,6 +78,11 @@ jobs:
       - name: Run UI tests
         run: |
           npx cypress run
+
+      - name: show logs
+        if: always()
+        run: |
+          docker logs kms
 
       - name: Login to github Registry
         if: ${{ inputs.push }}
