@@ -27,15 +27,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-#      - name: Build docker
-#        run: |
-#          cd $DOCKER_FOLDER && docker build . --file Dockerfile -t $TAG
+      - name: Build docker
+        run: |
+          cd $DOCKER_FOLDER && docker build . --file Dockerfile -t $TAG
 
       - name: Create network
         run: |
           docker network create testing
 
-      - name: Start docker
+      - name: Start KMS docker
         run: |
           docker run -d \
             --name kms \
@@ -47,7 +47,7 @@ jobs:
             -e "BASE_PATH=" \
             -e "SECRET_KEY=secret" \
             -e "DEBUG=true" \
-            qcdis/kms-generic:v3.9
+            $TAG:latest
 
       - name: Start Elasticsearch
         run: |
@@ -66,13 +66,13 @@ jobs:
         run: |
           npm install
 
-      - name: Wait until Elasticsearch is healthy
+      - name: Wait for Elasticsearch
         uses: raschmitt/wait-for-healthy-container/@v1
         with:
           container-name: es01
           timeout: 120
 
-      - name: Load fixtures
+      - name: Load fixtures into Elasticsearch
         run: |
           pip install elasticsearch
           python fixtures/load_fixtures.py
@@ -84,11 +84,6 @@ jobs:
       - name: Run UI tests
         run: |
           npx cypress run
-
-      - name: show logs
-        if: always()
-        run: |
-          docker logs kms
 
       - name: Login to github Registry
         if: ${{ inputs.push }}
