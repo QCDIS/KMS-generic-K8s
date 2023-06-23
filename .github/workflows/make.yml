@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-test-push:
-    uses: QCDIS/KMS-generic/.github/workflows/build-test-push.yml@74-run-tests-as-github-action  # FIXME
+    uses: QCDIS/KMS-generic/.github/workflows/build-test-push.yml@master
     with:
       docker_folder: .
       tag: kms-generic
