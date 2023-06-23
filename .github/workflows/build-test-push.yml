@@ -31,27 +31,33 @@ jobs:
 #        run: |
 #          cd $DOCKER_FOLDER && docker build . --file Dockerfile -t $TAG
 
+      - name: Create network
+        run: |
+          docker network create testing
+
       - name: Start docker
         run: |
           docker run -d \
+            --name kms \
             -p 8000:8000 \
-            -e "ELASTICSEARCH_URL=http://localhost:9200/" \
+            --network testing \
+            -e "ELASTICSEARCH_URL=http://es01:9200/" \
             -e "ELASTICSEARCH_USERNAME=elastic" \
             -e "ELASTICSEARCH_PASSWORD=changeme" \
             -e "BASE_PATH=" \
             -e "SECRET_KEY=secret" \
             -e "DEBUG=true" \
-            --name kms \
             qcdis/kms-generic:v3.9
 
       - name: Start Elasticsearch
         run: |
           docker run --rm -d \
+            --name es01 \
+            -p 9200:9200 \
+            --network testing \
             -e "discovery.type=single-node" \
             -e "ELASTIC_PASSWORD=changeme" \
             -e "xpack.security.http.ssl.enabled=false" \
-            --name es01 \
-            -p 9200:9200 \
             --health-cmd 'curl -u elastic:changeme http://localhost:9200/_cat/health | grep -q green' \
             --health-interval 10s \
             docker.elastic.co/elasticsearch/elasticsearch:8.8.1
