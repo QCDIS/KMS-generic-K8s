@@ -1,17 +1,22 @@
 name: Build and test container
 on:
-  pull_request:
+  release:
+    types: [published]
   push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '**'
   schedule:
     - cron: '0 0 5 * *'
 
 jobs:
   build-test-push:
-    uses: QCDIS/KMS-generic/.github/workflows/build-test-push.yml@master
+    uses: ./.github/workflows/build-test-push.yml
     with:
       docker_folder: .
       tag: kms-generic
-      push: false
+      push: ${{ github.event_name == 'release' }}
     secrets:
       docker_username: ${{ secrets.DOCKERHUB_USERNAME }}
       docker_password: ${{ secrets.DOCKERHUB_PASSWORD }}

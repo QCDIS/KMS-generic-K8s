@@ -15,7 +15,6 @@ fuzzywuzzy>=0.18.0
 xmljson>=0.2.1
 selenium>=4.7.2
 webdriver-manager>=3.8.5
-github.py>=0.5.0
 pygithub>=1.57
 gitlab-languages>=2.3.2
 pandas>=1.5.3
