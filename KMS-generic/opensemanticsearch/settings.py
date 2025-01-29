@@ -14,19 +14,20 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['SECRET_KEY']
-
+#SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = "Y50YaVPJq_JY7By8VdtB7EUBiF4GM1z972l2nH1y9LdLOmVxRu0dAVPglApzX-juvj8"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = (os.getenv('DEBUG', 'False').lower() == 'true')
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
-
+#ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost,145.100.135.113').split(',')
+ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = os.getenv(
     'CSRF_TRUSTED_ORIGINS', 'http://127.0.0.1,http://localhost').split(',')
 
 # Application definition
 
 INSTALLED_APPS = (
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -40,6 +41,9 @@ INSTALLED_APPS = (
     'webSearch',
     'webAPI',
     'api.v1',
+    'login',
+    'register',
+    'users',
 )
 
 MIDDLEWARE = (
@@ -120,12 +124,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-base_path = os.environ.get('BASE_PATH').strip()
+#base_path = os.environ.get('BASE_PATH').strip()
+base_path = "search"
 STATIC_URL = base_path + '/static/'
 # Add these new lines
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+# Nafis: Changed "staticfiles" to "static"
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'

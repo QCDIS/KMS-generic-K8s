@@ -41,13 +41,23 @@ aggregares = {
     },
 }
 
-elasticsearch_url = os.environ['ELASTICSEARCH_URL']
-elasticsearch_username = os.environ.get('ELASTICSEARCH_USERNAME')
-elasticsearch_password = os.environ.get('ELASTICSEARCH_PASSWORD')
+# elasticsearch_url = os.environ['ELASTICSEARCH_URL']
+# elasticsearch_username = os.environ.get('ELASTICSEARCH_USERNAME')
+# elasticsearch_password = os.environ.get('ELASTICSEARCH_PASSWORD')
+
+# Nafis Updated Elastic
+elasticsearch_username = "elastic"
+#os.environ.get('ELASTICSEARCH_USERNAME')
+elasticsearch_password = "3g53NNL+Xusi3yzEV+Od"
+#os.environ.get('ELASTICSEARCH_PASSWORD')
+if elasticsearch_username and elasticsearch_password:
+    http_auth = [elasticsearch_username, elasticsearch_password]
+else:
+    http_auth = None
 
 
-base_path = os.environ.get('BASE_PATH').strip()
-
+#base_path = os.environ.get('BASE_PATH').strip()
+base_path = "search"
 
 # -----------------------------------------------------------------------------------------------------------------------
 def genericsearch(request):
@@ -73,23 +83,58 @@ def genericsearch(request):
     except:
         facet = ''
 
-    searchResults = getSearchResults(request, facet, filter, page, term)
+    # searchResults = getSearchResults(request, facet, filter, page, term)
 
-    searchResults['suggestedSearchTerm'] = ''
-    if searchResults['NumberOfHits'] == 0:
-        suggestedSearchTerm = potentialSearchTerm(term)
-        suggestedResults = getSearchResults(request, facet, filter, page, suggestedSearchTerm)
-        print(suggestedSearchTerm, suggestedResults["NumberOfHits"])
-        if suggestedResults["NumberOfHits"] > 0:
-            searchResults["suggestedSearchTerm"] = suggestedSearchTerm
+    # searchResults['suggestedSearchTerm'] = ''
+    # if searchResults['NumberOfHits'] == 0:
+    #     suggestedSearchTerm = potentialSearchTerm(term)
+    #     suggestedResults = getSearchResults(request, facet, filter, page, suggestedSearchTerm)
+    #     print(suggestedSearchTerm, suggestedResults["NumberOfHits"])
+    #     if suggestedResults["NumberOfHits"] > 0:
+    #         searchResults["suggestedSearchTerm"] = suggestedSearchTerm
 
-    searchResults['base_path'] = base_path
+    # searchResults['base_path'] = base_path
+    # return render(request, 'webapi_results.html', searchResults)
+
+    # port = "8004"
+    # append = "&"
+    # equal = "="
+
+    port = os.environ.get('SEARCHAPI_PORT')
+    domain = os.environ.get('SEARCHAPI_DOMAIN')
+    append = "&"
+    equal = "="
+
+    url = domain + port + "/apisearch/search?" + "term" + equal + term + append + "page" + equal + page + append  + "filter" + equal + filter + append + "facet" + equal + facet
+    print("Final URL for the get request = ", url)
+    
+    "http://145.100.135.113:8002/apisearch/search?term=fire+ice&page=2"
+    
+    
+    
+
+    # Calling the API
+
+    try:
+        print("************** Calling the webAPI from the website **************")
+        response = requests.get(url)
+
+        if response.status_code == 200:
+            searchResults = response.json()
+        else:
+            print('Error:', response.status_code)
+    except requests.exceptions.RequestException as e:
+        print('Error:', e)
+
     return render(request, 'webapi_results.html', searchResults)
 
 
 # -----------------------------------------------------------------------------------------------------------------------
 def getSearchResults(request, facet, filter, page, term):
-    es = Elasticsearch(elasticsearch_url, http_auth=[elasticsearch_username, elasticsearch_password])
+    #es = Elasticsearch(elasticsearch_url, http_auth=[elasticsearch_username, elasticsearch_password])
+    es = Elasticsearch([{'host': 'localhost', 'port': 9200, "scheme": "https"}], http_auth=http_auth, ca_certs="/home/ubuntu/test/indexer/web_indexers/http_ca.crt")
+
+    
     index = Index('webapi', es)
     if filter != "" and facet != "":
         saved_list = request.session['filters']
@@ -223,7 +268,7 @@ def getSearchResults(request, facet, filter, page, term):
         "facets": facets,
         "results": lstResults,
         "NumberOfHits": numHits,
-        "page_range": range(1, upperBoundPage),
+        "page_range": list(range(1, upperBoundPage)),
         "cur_page": (page / 10 + 1),
         "searchTerm": term,
         "functionList": getAllfunctionList(request)

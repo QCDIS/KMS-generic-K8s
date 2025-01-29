@@ -4,13 +4,65 @@ import os
 from django.shortcuts import render
 from elasticsearch import Elasticsearch
 
-elasticsearch_url = os.environ['ELASTICSEARCH_URL']
-elasticsearch_username = os.environ.get('ELASTICSEARCH_USERNAME')
-elasticsearch_password = os.environ.get('ELASTICSEARCH_PASSWORD')
-base_path = os.environ.get('BASE_PATH').strip()
+# elasticsearch_url = os.environ['ELASTICSEARCH_URL']
+# elasticsearch_username = os.environ.get('ELASTICSEARCH_USERNAME')
+# elasticsearch_password = os.environ.get('ELASTICSEARCH_PASSWORD')
+# base_path = os.environ.get('BASE_PATH').strip()
+base_path = "search"
+# # Create your views here.
+# es = Elasticsearch(elasticsearch_url, http_auth=[elasticsearch_username, elasticsearch_password])
 
-# Create your views here.
-es = Elasticsearch(elasticsearch_url, http_auth=[elasticsearch_username, elasticsearch_password])
+print("You are at the main view page .........")
+
+
+##################################################################################
+
+# Nafis Updated Elastic
+# elasticsearch_username = "elastic"
+# #os.environ.get('ELASTICSEARCH_USERNAME')
+# elasticsearch_password = "3g53NNL+Xusi3yzEV+Od"
+# #os.environ.get('ELASTICSEARCH_PASSWORD')
+# if elasticsearch_username and elasticsearch_password:
+#     http_auth = [elasticsearch_username, elasticsearch_password]
+# else:
+#     http_auth = None
+
+# es = Elasticsearch([{'host': 'localhost', 'port': 9200, "scheme": "https"}], http_auth=http_auth, ca_certs="/home/ubuntu/Development/test/indexer/web_indexers/http_ca.crt")
+
+# print("Printing ping and information*****", es.ping())
+# print(es.info())
+###################################################################################
+
+
+#################################################################################### NEW ES ####################################################################################
+
+elasticsearch_url = "https://lifewatch.lab.uvalight.net/es-nafis/"
+elasticsearch_password = "otwVzERILUVxDb090WBJoh56WTFFT8cT"
+elasticsearch_username = "elastic"
+#verify_certs=False
+
+# es = Elasticsearch(
+#         elasticsearch_url,
+#     http_auth=(elasticsearch_username, elasticsearch_password),
+#     ca_certs="/home/ubuntu/Development/test/indexer/web_indexers/http_ca.crt")
+# #es = Elasticsearch(elasticsearch_url, http_auth=[elasticsearch_username, elasticsearch_password])
+
+es = Elasticsearch(
+elasticsearch_url,
+http_auth=(elasticsearch_username, elasticsearch_password),
+verify_certs=False)
+#ca_certs="/home/ubuntu/Development/test/indexer/web_indexers/http_ca.crt")
+
+if es.ping():
+        print("Connected to Elasticsearch")
+else:
+    print("Could not connect to Elasticsearch")
+    #verify_certs=False
+    print("Printing ping and information*****", es.ping())
+    print(es.info())
+
+###################################################################################
+
 
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -71,6 +123,7 @@ def genericpages(request):
         })
     # ----------------------------------------------
     elif page == "graphV":
+        print("You are inside graphVisualization ...")
         try:
             Query["label"] = "Query: " + term
             id, dataset_nodes1, dataset_edges1, numHits1 = graphV_dataset(100, term)
@@ -766,6 +819,7 @@ def graphV_dataset(id, searchValue):
 
     result = es.search(index="dataset", body=query_body)
     numHits = result['hits']['total']['value']
+    print("number of hits", numHits)
 
     lstDataset = {}
     lstAddedRIs = []
